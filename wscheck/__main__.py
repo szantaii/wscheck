@@ -23,7 +23,10 @@ def main():
 
     if checker.issues:
         printer = ErrorPrinter(checker.issues)
+
         printer.print_to_tty()
+        if args.output_checkstyle:
+            printer.write_checkstyle(args.output_checkstyle)
 
         return 1
 
@@ -52,6 +55,8 @@ def _get_args():
 
     parser.add_argument('-e', '--exclude', dest='excludes', metavar='RULE', type=rule, nargs='+',
                         help='Exclude rule(s)')
+    parser.add_argument('--checkstyle', dest='output_checkstyle', type=str,
+                        help='Path of checkstyle output')
 
     args = parser.parse_args()
 
