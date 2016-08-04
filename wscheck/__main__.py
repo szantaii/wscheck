@@ -21,7 +21,7 @@ def main():
     for file_path in args.paths:
         checker.check_file(file_path)
 
-    printer = ErrorPrinter(checker.issues)
+    printer = ErrorPrinter(args.paths, checker.issues)
     printer.print_to_tty()
     if args.output_checkstyle:
         printer.write_checkstyle(args.output_checkstyle)

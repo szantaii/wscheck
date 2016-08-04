@@ -6,7 +6,8 @@ BUILD = builder.ElementMaker()
 
 
 class ErrorPrinter(object):
-    def __init__(self, issues):
+    def __init__(self, files, issues):
+        self._files = sorted(files)
         self._issues = sorted(issues, key=lambda e: (e['path'], e['row'], e['column']))
 
     def print_to_tty(self):
@@ -43,15 +44,10 @@ class ErrorPrinter(object):
         return message
 
     def write_checkstyle(self, file_path):
-        file_elements = {}
+        file_elements = {path: BUILD.file(name=path) for path in self._files}
 
         for issue in self._issues:
-            path = issue['path']
-            if path not in file_elements:
-                file_elements[path] = BUILD.file(name=path)
-            file_element = file_elements.get(path)
-
-            file_element.append(
+            file_elements[issue['path']].append(
                 BUILD.error(
                     line='{}'.format(issue['row'] + 1),
                     column='{}'.format(issue['column'] + 1),
