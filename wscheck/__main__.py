@@ -21,13 +21,12 @@ def main():
     for file_path in args.paths:
         checker.check_file(file_path)
 
+    printer = ErrorPrinter(checker.issues)
+    printer.print_to_tty()
+    if args.output_checkstyle:
+        printer.write_checkstyle(args.output_checkstyle)
+
     if checker.issues:
-        printer = ErrorPrinter(checker.issues)
-
-        printer.print_to_tty()
-        if args.output_checkstyle:
-            printer.write_checkstyle(args.output_checkstyle)
-
         return 1
 
     return 0

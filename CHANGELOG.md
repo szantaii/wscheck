@@ -4,14 +4,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+## Fixed
+- Write checkstyle file when no issues
+
 
 ## [0.1.2] - 2016-08-04
 ### Changed
 - Minimized dependencies
 
+
 ## [0.1.1] - 2016-08-04
 ### Added
 - PyPi release
+
 
 ## 0.1.0 - 2016-08-04
 ### Added
