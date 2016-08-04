@@ -17,7 +17,7 @@ class ErrorPrinter(object):
     def print_to_tty(self):
         for issue in self._issues:
             context = issue['context']
-            message_indent = issue['column']
+            message_indent = issue['col']
             message = self._get_message(issue)
 
             index = 0
@@ -34,8 +34,8 @@ class ErrorPrinter(object):
 
             print('\nIn {path} line {row}:\n{context}\n{message_indent}^-- {message}'.format(
                 path=issue['path'],
-                row=issue['row'] + 1,
-                col=issue['column'] + 1,
+                row=issue['line'] + 1,
+                col=issue['col'] + 1,
                 context=context,
                 message_indent=' ' * message_indent,
                 message='{}: {}'.format(issue['rule'], message)
@@ -60,8 +60,8 @@ class ErrorPrinter(object):
         for issue in self._issues:
             file_elements[issue['path']].append(
                 BUILD.error(
-                    line='{}'.format(issue['row'] + 1),
-                    column='{}'.format(issue['column'] + 1),
+                    line='{}'.format(issue['line'] + 1),
+                    column='{}'.format(issue['col'] + 1),
                     severity='warning',
                     message=self._get_message(issue),
                     source='WhitespaceCheck.{}'.format(issue['rule'])
