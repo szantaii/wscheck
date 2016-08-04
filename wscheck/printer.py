@@ -1,6 +1,6 @@
 from lxml import builder, etree
 
-from wscheck import RULES
+from checker import RULES
 
 BUILD = builder.ElementMaker()
 

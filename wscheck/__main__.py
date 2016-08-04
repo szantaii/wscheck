@@ -6,7 +6,7 @@ import argparse
 import os
 import sys
 
-from wscheck import WhitespaceChecker, RULES
+from checker import WhitespaceChecker, RULES
 from printer import ErrorPrinter
 
 
