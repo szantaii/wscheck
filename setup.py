@@ -11,7 +11,7 @@ def read(*path):
 
 setup(
     name='wscheck',
-    version='0.1.1',
+    version='0.1.2',
     url='https://github.com/andras-tim/wscheck',
     license='GPLv3',
     author='Andras Tim',
