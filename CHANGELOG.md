@@ -18,6 +18,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - ``wscheck`` lib with command line bin
 
 
-[unreleased]: https://github.com/andras-tim/octoconf/compare/v0.1.2...HEAD
-[0.1.2]: https://github.com/andras-tim/tchart/compare/v0.1.1...v0.1.2
-[0.1.1]: https://github.com/andras-tim/tchart/compare/v0.1.0...v0.1.1
+[unreleased]: https://github.com/andras-tim/wscheck/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/andras-tim/wscheck/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/andras-tim/wscheck/compare/v0.1.0...v0.1.1
