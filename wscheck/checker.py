@@ -11,10 +11,10 @@ RULES = {
 
 
 class WhitespaceChecker(object):
-    LINE_TEMPLATE = re.compile(r'([^\n\r]*)(\r\n|\r|\n|)', re.MULTILINE)
-    TAILING_WHITESPACE_TEMPLATE = re.compile(r'\s+$')
-    LINE_INDENT_TEMPLATE = re.compile(r'^\s+')
-    NOT_SPACES_TEMPLATE = re.compile(r'[^ ]')
+    _LINE_TEMPLATE = re.compile(r'([^\n\r]*)(\r\n|\r|\n|)', re.MULTILINE)
+    _TAILING_WHITESPACE_TEMPLATE = re.compile(r'\s+$')
+    _LINE_INDENT_TEMPLATE = re.compile(r'^\s+')
+    _NOT_SPACES_TEMPLATE = re.compile(r'[^ ]')
 
     def __init__(self, excluded_rules=None):
         """
@@ -59,7 +59,7 @@ class WhitespaceChecker(object):
         """
         with open(file_path) as fd:
             file_content = fd.read()
-        lines = self.LINE_TEMPLATE.findall(file_content)
+        lines = self._LINE_TEMPLATE.findall(file_content)
 
         # Workaround: can not match end of string in multi line regexp
         if len(lines) > 1 and lines[-2][1] == '':
@@ -81,14 +81,14 @@ class WhitespaceChecker(object):
                                     message_suffix='{!r}'.format(eol))
 
             if 'WSW002' in self._rules:
-                tailing_whitespace_match = self.TAILING_WHITESPACE_TEMPLATE.search(line)
+                tailing_whitespace_match = self._TAILING_WHITESPACE_TEMPLATE.search(line)
                 if tailing_whitespace_match is not None:
                     self._add_issue(rule='WSW002', path=file_path, row=row, column=len(line) - 1, context=line)
 
             if line.strip() == '':
                 continue
 
-            indent_match = self.LINE_INDENT_TEMPLATE.match(line)
+            indent_match = self._LINE_INDENT_TEMPLATE.match(line)
             if indent_match is not None:
                 line_indent = indent_match.group()
 
@@ -97,7 +97,7 @@ class WhitespaceChecker(object):
                         self._add_issue(rule='WSW003', path=file_path, row=row, column=0, context=line)
 
                 if 'WSW004' in self._rules:
-                    character_match = self.NOT_SPACES_TEMPLATE.search(line_indent)
+                    character_match = self._NOT_SPACES_TEMPLATE.search(line_indent)
                     if character_match is not None:
                         self._add_issue(rule='WSW004', path=file_path, row=row, column=character_match.start(),
                                         context=line)
