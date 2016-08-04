@@ -72,18 +72,18 @@ class WhitespaceChecker(object):
         :type file_path: str
         :type lines: list
         """
-        for line, line_text_eol in enumerate(lines):
+        for line, line_text_eol in enumerate(lines, start=1):
             line_text, line_eol = line_text_eol
 
             if 'WSW001' in self._rules:
                 if not line_eol == '' and not line_eol == '\n':
-                    self._add_issue(rule='WSW001', path=file_path, line=line, col=len(line_text), context=line_text,
+                    self._add_issue(rule='WSW001', path=file_path, line=line, col=len(line_text) + 1, context=line_text,
                                     message_suffix='{!r}'.format(line_eol))
 
             if 'WSW002' in self._rules:
                 tailing_whitespace_match = self._TAILING_WHITESPACE_TEMPLATE.search(line_text)
                 if tailing_whitespace_match is not None:
-                    self._add_issue(rule='WSW002', path=file_path, line=line, col=len(line_text) - 1, context=line_text)
+                    self._add_issue(rule='WSW002', path=file_path, line=line, col=tailing_whitespace_match.start() + 1, context=line_text)
 
             if line_text.strip() == '':
                 continue
@@ -93,13 +93,13 @@ class WhitespaceChecker(object):
                 line_indent = indent_match.group()
 
                 if 'WSW003' in self._rules:
-                    if not len(line_indent) % 2 == 0:
-                        self._add_issue(rule='WSW003', path=file_path, line=line, col=0, context=line_text)
+                    if not len(line_indent.replace('\t', '    ')) % 2 == 0:
+                        self._add_issue(rule='WSW003', path=file_path, line=line, col=len(line_indent), context=line_text)
 
                 if 'WSW004' in self._rules:
                     character_match = self._NOT_SPACES_TEMPLATE.search(line_indent)
                     if character_match is not None:
-                        self._add_issue(rule='WSW004', path=file_path, line=line, col=character_match.start(),
+                        self._add_issue(rule='WSW004', path=file_path, line=line, col=character_match.start() + 1,
                                         context=line_text)
 
     def _add_issue(self, rule, path, line, col, context, message_suffix=None):
@@ -123,8 +123,7 @@ class WhitespaceChecker(object):
             return
 
         empty_lines = 0
-        for line, line_text_eol in reversed(tuple(enumerate(lines))):
-            line_text, line_eol = line_text_eol
+        for line_text, _ in reversed(tuple(lines)):
             if not line_text == '':
                 break
             empty_lines += 1
@@ -132,10 +131,10 @@ class WhitespaceChecker(object):
         if 'WSW005' in self._rules:
             if empty_lines == 0:
                 line_text = lines[-1][0]
-                self._add_issue(rule='WSW005', path=file_path, line=len(lines), col=0, context=line_text)
+                self._add_issue(rule='WSW005', path=file_path, line=len(lines), col=len(line_text) + 1, context=line_text)
         if 'WSW006' in self._rules:
             if empty_lines > 1:
                 shift = min(len(lines), empty_lines + 1)
                 line_text = lines[-shift][0]
-                self._add_issue(rule='WSW006', path=file_path, line=len(lines) - shift, col=len(line_text),
+                self._add_issue(rule='WSW006', path=file_path, line=len(lines) - shift + 1, col=len(line_text) + 1,
                                 context=line_text, message_suffix='(+{})'.format(empty_lines - 1))

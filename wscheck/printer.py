@@ -34,8 +34,8 @@ class ErrorPrinter(object):
 
             print('\nIn {path} line {row}:\n{context}\n{message_indent}^-- {message}'.format(
                 path=issue['path'],
-                row=issue['line'] + 1,
-                col=issue['col'] + 1,
+                row=issue['line'],
+                col=issue['col'],
                 context=context,
                 message_indent=' ' * message_indent,
                 message='{}: {}'.format(issue['rule'], message)
@@ -60,8 +60,8 @@ class ErrorPrinter(object):
         for issue in self._issues:
             file_elements[issue['path']].append(
                 BUILD.error(
-                    line='{}'.format(issue['line'] + 1),
-                    column='{}'.format(issue['col'] + 1),
+                    line='{}'.format(issue['line']),
+                    column='{}'.format(issue['col']),
                     severity='warning',
                     message=self._get_message(issue),
                     source='WhitespaceCheck.{}'.format(issue['rule'])
