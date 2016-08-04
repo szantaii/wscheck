@@ -17,6 +17,9 @@ class WhitespaceChecker(object):
     NOT_SPACES_TEMPLATE = re.compile(r'[^ ]')
 
     def __init__(self, excluded_rules=None):
+        """
+        :type excluded_rules: list or None
+        """
         excluded_rules = excluded_rules or []
 
         self._rules = {
@@ -36,14 +39,24 @@ class WhitespaceChecker(object):
 
     @property
     def issues(self):
+        """
+        :rtype: list
+        """
         return self._issues
 
     def check_file(self, file_path):
+        """
+        :type file_path: str
+        """
         lines = self._read_file_lines_w_eol(file_path)
         for checker in self._checkers:
             checker(file_path, lines)
 
     def _read_file_lines_w_eol(self, file_path):
+        """
+        :type file_path: str
+        :rtype: list
+        """
         with open(file_path) as fd:
             file_content = fd.read()
         lines = self.LINE_TEMPLATE.findall(file_content)
@@ -55,6 +68,10 @@ class WhitespaceChecker(object):
         return lines
 
     def _check_by_lines(self, file_path, lines):
+        """
+        :type file_path: str
+        :type lines: list
+        """
         for row, line_eol in enumerate(lines):
             line, eol = line_eol
 
@@ -86,10 +103,22 @@ class WhitespaceChecker(object):
                                         context=line)
 
     def _add_issue(self, rule, path, row, column, context, message_suffix=None):
+        """
+        :type rule: str
+        :type path: str
+        :type row: int
+        :type column: int
+        :type context: str
+        :type message_suffix: str or None
+        """
         self._issues.append({'rule': rule, 'path': path, 'row': row, 'column': column, 'context': context,
                             'message_suffix': message_suffix})
 
     def _check_eof(self, file_path, lines):
+        """
+        :type file_path: str
+        :type lines: list
+        """
         if len(lines) == 0:
             return
 

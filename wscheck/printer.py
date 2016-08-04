@@ -7,6 +7,10 @@ BUILD = builder.ElementMaker()
 
 class ErrorPrinter(object):
     def __init__(self, files, issues):
+        """
+        :type files: list
+        :type issues: list
+        """
         self._files = sorted(files)
         self._issues = sorted(issues, key=lambda e: (e['path'], e['row'], e['column']))
 
@@ -38,12 +42,19 @@ class ErrorPrinter(object):
             ))
 
     def _get_message(self, issue):
+        """
+        :type issue: dict
+        :rtype: str
+        """
         message = RULES[issue['rule']]
         if issue['message_suffix']:
             message = '{} {}'.format(message, issue['message_suffix'])
         return message
 
     def write_checkstyle(self, file_path):
+        """
+        :type file_path: str
+        """
         file_elements = {path: BUILD.file(name=path) for path in self._files}
 
         for issue in self._issues:
