@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Added
+- Covered code with tests
+
 ## Fixed
 - Write checkstyle file when no issues
 - Write issue-less paths into checkstyle output
