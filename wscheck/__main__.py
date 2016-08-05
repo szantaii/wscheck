@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
+"""Whitespace checking tool."""
+
 import argparse
 import os
 import sys
 
 from wscheck import WhitespaceChecker, RULES
 from printer import ErrorPrinter
-
-__doc__ = "Whitespace checking tool."
 
 
 def main():
