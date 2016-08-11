@@ -12,7 +12,7 @@ class ErrorPrinter(object):
         :type issues: list
         """
         self._files = sorted(files)
-        self._issues = sorted(issues, key=lambda e: (e['path'], e['row'], e['column']))
+        self._issues = sorted(issues, key=lambda issue: (issue['path'], issue['line'], issue['col']))
 
     def print_to_tty(self):
         for issue in self._issues:
