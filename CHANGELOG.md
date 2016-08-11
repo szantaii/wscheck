@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Added
+- Added some test cases to printer
 
 
 ## [0.1.4] - 2016-08-11
