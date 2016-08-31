@@ -94,7 +94,7 @@ class WhitespaceChecker(object):
 
                 if 'WSW003' in self._rules:
                     if not len(line_indent.replace('\t', '    ')) % 2 == 0:
-                        self._add_issue(rule='WSW003', path=file_path, line=line, col=len(line_indent), context=line_text)
+                        self._add_issue(rule='WSW003', path=file_path, line=line, col=len(line_indent) + 1, context=line_text)
 
                 if 'WSW004' in self._rules:
                     character_match = self._NOT_SPACES_TEMPLATE.search(line_indent)

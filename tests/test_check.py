@@ -185,10 +185,10 @@ class TestLines(object):
         )
 
     @pytest.mark.parametrize('content,col', [
-        (' berry',          1),  # noqa: E241
-        ('   berry',        3),  # noqa: E241
-        ('     berry',      5),  # noqa: E241
-        ('       berry',    7),  # noqa: E241
+        (' berry',          2),  # noqa: E241
+        ('   berry',        4),  # noqa: E241
+        ('     berry',      6),  # noqa: E241
+        ('       berry',    8),  # noqa: E241
     ])
     def test_odd_indentation_is_bad(self, checker, content, col):
         assert_check_file(
@@ -236,7 +236,7 @@ class TestComplexCases(object):
                     'context': ' \tpineapple ', 'message_suffix': None
                 },
                 {
-                    'rule': 'WSW003', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 2,
+                    'rule': 'WSW003', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 3,
                     'context': ' \tpineapple ', 'message_suffix': None
                 },
                 {

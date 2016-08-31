@@ -51,11 +51,11 @@ Example
 
     In examples/multiple_problems.py line 5:
             self.print_to_pdf()
-                                ^-- WSW002: Tailing whitespace
+                               ^-- WSW002: Tailing whitespace
 
     In examples/multiple_problems.py line 8:
        def __generate_pdf(self):
-    ^-- WSW003: Indentation is not multiple of 2
+       ^-- WSW003: Indentation is not multiple of 2
 
     In examples/multiple_problems.py line 9:
             pdf_generator = _LabelPdfGenerator()

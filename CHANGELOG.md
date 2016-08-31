@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Fixed
+- Fixed column calculation of WSW003
 
 
 ## [0.1.5] - 2016-08-31
