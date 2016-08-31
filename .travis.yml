@@ -2,13 +2,8 @@ sudo: false
 language: python
 os:
   - linux
-  - osx
 python:
   - 2.7
-matrix:
-  allow_failures:
-    - os: osx
-
 
 before_cache:
   - rm -f $HOME/.cache/pip/log/debug.log
