@@ -17,7 +17,7 @@ class ErrorPrinter(object):
     def print_to_tty(self):
         for issue in self._issues:
             context = issue['context']
-            message_indent = issue['col']
+            message_indent = issue['col'] - 1
             message = self._get_message(issue)
 
             index = 0

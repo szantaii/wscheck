@@ -45,15 +45,15 @@ def test_print_to_tty(capfd, printer):
         '',
         'In /file2 line 10:',
         'foo',
-        '    ^-- WSW001: Bad line ending \'\\r\\n\'',
+        '   ^-- WSW001: Bad line ending \'\\r\\n\'',
         '',
         'In /file2 line 187:',
         'exit 0',
-        '{}{}'.format(' ' * 79, '^-- WSW005: No newline at end of file'),
+        '{}{}'.format(' ' * 78, '^-- WSW005: No newline at end of file'),
         '',
         'In /file2 line 188:',
         'echo \'foo--->bar\'  ',
-        '                  ^-- WSW002: Tailing whitespace',
+        '                 ^-- WSW002: Tailing whitespace',
         ''
     ])
 

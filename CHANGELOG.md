@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added some test cases to printer
 
+### Fixed
+- Fixed arrow position on console output
+
 
 ## [0.1.4] - 2016-08-11
 ### Fixed
