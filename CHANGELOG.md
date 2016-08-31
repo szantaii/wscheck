@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+
+
+## [0.1.6] - 2016-08-31
 ### Fixed
 - Fixed column calculation of WSW003
 
@@ -48,7 +51,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - ``wscheck`` lib with command line bin
 
 
-[unreleased]: https://github.com/andras-tim/wscheck/compare/v0.1.5...HEAD
+[unreleased]: https://github.com/andras-tim/wscheck/compare/v0.1.6...HEAD
+[0.1.4]: https://github.com/andras-tim/wscheck/compare/v0.1.5...v0.1.6
 [0.1.4]: https://github.com/andras-tim/wscheck/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/andras-tim/wscheck/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/andras-tim/wscheck/compare/v0.1.2...v0.1.3
