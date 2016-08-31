@@ -1,3 +1,4 @@
+from collections import OrderedDict
 from lxml import builder, etree
 
 from checker import RULES
@@ -17,7 +18,7 @@ class ErrorPrinter(object):
     def print_to_tty(self):
         for issue in self._issues:
             context = issue['context']
-            message_indent = issue['col']
+            message_indent = issue['col'] - 1
             message = self._get_message(issue)
 
             index = 0
@@ -55,7 +56,10 @@ class ErrorPrinter(object):
         """
         :type file_path: str
         """
-        file_elements = {path: BUILD.file(name=path) for path in self._files}
+        file_elements = OrderedDict(
+            (path, BUILD.file(name=path))
+            for path in sorted(self._files, key=lambda path: path.lower())
+        )
 
         for issue in self._issues:
             file_elements[issue['path']].append(

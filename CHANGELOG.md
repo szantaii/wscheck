@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Added
+- Added some test cases to printer
+
+### Changed
+- Always write checkstyle output in case-insensitive alphabetic order of paths
+
+### Fixed
+- Fixed arrow position on console output
 
 
 ## [0.1.4] - 2016-08-11
