@@ -132,6 +132,7 @@ class WhitespaceChecker(object):
             if empty_lines == 0:
                 line_text = lines[-1][0]
                 self._add_issue(rule='WSW005', path=file_path, line=len(lines), col=len(line_text) + 1, context=line_text)
+
         if 'WSW006' in self._rules:
             if empty_lines > 1:
                 shift = min(len(lines), empty_lines + 1)
