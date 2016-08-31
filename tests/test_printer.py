@@ -1,4 +1,6 @@
 import pytest
+from lxml import etree
+from formencode.doctest_xml_compare import xml_compare
 
 from wscheck.printer import ErrorPrinter
 
@@ -66,6 +68,29 @@ def test_print_to_tty(capfd, printer):
     assert expected_stdout == out
 
 
+def assert_equal_xml(generated_xml, expected_xml):
+    """
+    :type generated_xml: str
+    :type expected_xml: str
+    """
+    __tracebackhide__ = True  # noqa
+
+    differences = []
+
+    def append_to_messages(message):
+        """
+        :type message: str
+        """
+        differences.append(' * {}'.format(message))
+
+    generated_root_element = etree.fromstring(generated_xml)
+    expected_root_element = etree.fromstring(expected_xml)
+
+    xml_compare(expected_root_element, generated_root_element, reporter=append_to_messages)
+    if differences:
+        raise AssertionError('\n{}'.format('\n'.join(differences)))
+
+
 def test_write_checkstyle(tmpdir, printer):
     temp_file = tmpdir.join('test.xml')
     expected_xml = """<?xml version=\'1.0\' encoding=\'UTF-8\'?>
@@ -82,4 +107,4 @@ def test_write_checkstyle(tmpdir, printer):
     printer.write_checkstyle(file_path=str(temp_file))
 
     assert temp_file.check()
-    assert expected_xml == temp_file.read()
+    assert_equal_xml(temp_file.read(), expected_xml)

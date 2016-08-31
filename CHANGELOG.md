@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added some test cases to printer
 
+### Changed
+- Always write checkstyle output in case-insensitive alphabetic order of paths
+
 ### Fixed
 - Fixed arrow position on console output
 
