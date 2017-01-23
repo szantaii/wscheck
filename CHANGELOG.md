@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Added
+- Handle directories with include, exclude glob patterns - issue #1
 
 
 ## [0.1.6] - 2016-08-31

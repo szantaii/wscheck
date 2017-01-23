@@ -6,11 +6,16 @@ import argparse
 import os
 import sys
 
+from file_iterator import FileIterator
 from checker import WhitespaceChecker, RULES
 from printer import ErrorPrinter
 
 
 def main():
+    """
+    :rtype: int
+    """
+
     args = _get_args()
 
     if args.list_rules:
@@ -18,7 +23,7 @@ def main():
         return 0
 
     checker = WhitespaceChecker(excluded_rules=args.excludes)
-    for file_path in args.paths:
+    for file_path in FileIterator(include_paths=args.paths):
         checker.check_file(file_path)
 
     printer = ErrorPrinter(args.paths, checker.issues)
@@ -40,9 +45,19 @@ def _list_rules():
 
 
 def _get_args():
+    """
+    :return: w/ populated argparse.Namespace
+    """
+
     def rule(rule_name):
+        """
+        :type rule_name: str
+        :rtype: str
+        """
+
         if rule_name not in RULES:
             raise argparse.ArgumentTypeError('Unknown rule')
+
         return rule_name
 
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=WideHelpFormatter)
@@ -69,7 +84,7 @@ class WideHelpFormatter(argparse.RawDescriptionHelpFormatter):
     def __init__(self, prog, *args, **kwargs):
         indent_increment = 2
         max_help_position = 40
-        width = int(os.getenv("COLUMNS", 120)) - 2
+        width = int(os.getenv('COLUMNS', 120)) - 2
 
         super(WideHelpFormatter, self).__init__(prog, indent_increment, max_help_position, width)
 
