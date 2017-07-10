@@ -221,6 +221,28 @@ class TestLines(object):
         )
 
 
+class TestEmptyLines(object):
+    # def test_lf_is_good_eol(self, checker):
+    #     assert_check_file(
+    #         checker,
+    #         file_content='orange\nbanana\n',
+    #         expected_issues=[]
+    #     )
+
+    # def test_too_many_empty_lines(self, checker):
+    #     assert_check_file(
+    #         checker,
+    #         file_content='apple\n\n\norange',
+    #         expected_issues=[
+    #             {
+    #                 'rule': 'WSW007', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 1,
+    #                 'context': 'apple', 'message_suffix': '\'\\r\''
+    #             },
+    #         ]
+    #     )
+    pass
+
+
 class TestComplexCases(object):
     def test_multiple_issues(self, checker):
         assert_check_file(
