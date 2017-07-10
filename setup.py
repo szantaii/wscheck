@@ -17,12 +17,10 @@ class PyTest(TestCommand):
         self.test_args = []
         self.test_suite = True
 
-    def finalize_options(self):
-        pass
-
     def run_tests(self):
+        import shlex
         import pytest
-        exit_code = pytest.main(self.pytest_args)
+        exit_code = pytest.main(shlex.split(self.pytest_args))
         sys.exit(exit_code)
 
 

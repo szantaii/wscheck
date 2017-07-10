@@ -82,7 +82,7 @@ Bugs or suggestions? Visit the `issue tracker <https://github.com/andras-tim/wsc
 .. |DependencyStatus| image:: https://gemnasium.com/andras-tim/wscheck.svg
     :target: https://gemnasium.com/andras-tim/wscheck
     :alt: Dependency Status
-.. |PyPi| image:: https://img.shields.io/pypi/dm/wscheck.svg
+.. |PyPi| image:: https://img.shields.io/badge/download-PyPi-green.svg
     :target: https://pypi.python.org/pypi/wscheck
     :alt: Python Package
 .. |License| image:: https://img.shields.io/badge/license-GPL%203.0-blue.svg
