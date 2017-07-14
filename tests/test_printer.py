@@ -13,7 +13,7 @@ TEST_ISSUES = [
     # common case
     {
         'message_suffix': None,
-        'rule': 'WSW005',
+        'rule': 'WSC005',
         'context': 'exit 0',
         'path': '/bad_file',
         'line': 187,
@@ -22,7 +22,7 @@ TEST_ISSUES = [
     # tab character in context
     {
         'message_suffix': None,
-        'rule': 'WSW002',
+        'rule': 'WSC002',
         'context': "echo 'foo\tbar'  ",
         'path': '/bad_file',
         'line': 188,
@@ -31,7 +31,7 @@ TEST_ISSUES = [
     # set message suffix
     {
         'message_suffix': "'\\r\\n'",
-        'rule': 'WSW001',
+        'rule': 'WSC001',
         'context': 'foo',
         'path': '/bad_file',
         'line': 10,
@@ -50,15 +50,15 @@ def test_print_to_tty(capfd, printer):
         '',
         'In /bad_file line 10:',
         'foo',
-        '   ^-- WSW001: Bad line ending \'\\r\\n\'',
+        '   ^-- WSC001: Bad line ending \'\\r\\n\'',
         '',
         'In /bad_file line 187:',
         'exit 0',
-        '      ^-- WSW005: No newline at end of file',
+        '      ^-- WSC005: No newline at end of file',
         '',
         'In /bad_file line 188:',
         'echo \'foo--->bar\'  ',
-        '                   ^-- WSW002: Tailing whitespace',
+        '                   ^-- WSC002: Tailing whitespace',
         ''
     ])
 
@@ -96,9 +96,9 @@ def test_write_checkstyle(tmpdir, printer):
     expected_xml = """<?xml version=\'1.0\' encoding=\'UTF-8\'?>
 <checkstyle version="4.3">
   <file name="/bad_file">
-    <error column="4" source="WhitespaceCheck.WSW001" message="Bad line ending \'\\r\\n\'" line="10" severity="warning"/>
-    <error column="7" source="WhitespaceCheck.WSW005" message="No newline at end of file" line="187" severity="warning"/>
-    <error column="17" source="WhitespaceCheck.WSW002" message="Tailing whitespace" line="188" severity="warning"/>
+    <error column="4" source="WhitespaceCheck.WSC001" message="Bad line ending \'\\r\\n\'" line="10" severity="warning"/>
+    <error column="7" source="WhitespaceCheck.WSC005" message="No newline at end of file" line="187" severity="warning"/>
+    <error column="17" source="WhitespaceCheck.WSC002" message="Tailing whitespace" line="188" severity="warning"/>
   </file>
   <file name="/good_file"/>
 </checkstyle>

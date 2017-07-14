@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Changed
+- Renamed rule IDs from **WSW000** to **WSC000** for better fit to the name of `wscheck`
 
 
 ## [0.1.6] - 2016-08-31
@@ -48,7 +50,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.1.0 - 2016-08-04
 ### Added
-- ``wscheck`` lib with command line bin
+- `wscheck` lib with command line bin
 
 
 [unreleased]: https://github.com/andras-tim/wscheck/compare/v0.1.6...HEAD

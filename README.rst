@@ -25,7 +25,7 @@ Usage
 
 .. code-block:: bash
 
-    $ wscheck --exclude WSW002 --exclude WSW003 orange.sh
+    $ wscheck --exclude WSC002 --exclude WSC003 orange.sh
 
 **Get list of available rules:**
 
@@ -51,23 +51,23 @@ Example
 
     In examples/multiple_problems.py line 5:
             self.print_to_pdf()
-                               ^-- WSW002: Tailing whitespace
+                               ^-- WSC002: Tailing whitespace
 
     In examples/multiple_problems.py line 8:
        def __generate_pdf(self):
-       ^-- WSW003: Indentation is not multiple of 2
+       ^-- WSC003: Indentation is not multiple of 2
 
     In examples/multiple_problems.py line 9:
             pdf_generator = _LabelPdfGenerator()
-                                                ^-- WSW001: Bad line ending '\r\n'
+                                                ^-- WSC001: Bad line ending '\r\n'
 
     In examples/multiple_problems.py line 15:
     --->--->os.makedirs(self.__print_cache_dir, exist_ok=True)
-    ^-- WSW004: Indentation with non-space character
+    ^-- WSC004: Indentation with non-space character
 
     In examples/multiple_problems.py line 21:
             return os.path.join(self.__print_cache_dir, pdf_name)
-                                                                 ^-- WSW006: Too many newline at end of file (+1)
+                                                                 ^-- WSC006: Too many newline at end of file (+1)
 
 
 Bugs

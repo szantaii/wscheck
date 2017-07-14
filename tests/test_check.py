@@ -41,7 +41,7 @@ class TestEof(object):
             file_content='\n',
             expected_issues=[
                 {
-                    'rule': 'WSW006', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 1,
+                    'rule': 'WSC006', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 1,
                     'context': '', 'message_suffix': '(+1)'
                 },
             ]
@@ -53,7 +53,7 @@ class TestEof(object):
             file_content='\n\n',
             expected_issues=[
                 {
-                    'rule': 'WSW006', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 1,
+                    'rule': 'WSC006', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 1,
                     'context': '', 'message_suffix': '(+2)'
                 },
             ]
@@ -65,7 +65,7 @@ class TestEof(object):
             file_content='apple',
             expected_issues=[
                 {
-                    'rule': 'WSW005', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 6,
+                    'rule': 'WSC005', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 6,
                     'context': 'apple', 'message_suffix': None
                 },
             ]
@@ -84,7 +84,7 @@ class TestEof(object):
             file_content='apple\norange',
             expected_issues=[
                 {
-                    'rule': 'WSW005', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
+                    'rule': 'WSC005', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
                     'context': 'orange', 'message_suffix': None
                 },
             ]
@@ -112,11 +112,11 @@ class TestLines(object):
             file_content='apple\rorange\r',
             expected_issues=[
                 {
-                    'rule': 'WSW001', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 6,
+                    'rule': 'WSC001', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 6,
                     'context': 'apple', 'message_suffix': '\'\\r\''
                 },
                 {
-                    'rule': 'WSW001', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
+                    'rule': 'WSC001', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
                     'context': 'orange', 'message_suffix': '\'\\r\''
                 },
             ]
@@ -128,11 +128,11 @@ class TestLines(object):
             file_content='apple\r\norange\r\n',
             expected_issues=[
                 {
-                    'rule': 'WSW001', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 6,
+                    'rule': 'WSC001', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 6,
                     'context': 'apple', 'message_suffix': '\'\\r\\n\''
                 },
                 {
-                    'rule': 'WSW001', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
+                    'rule': 'WSC001', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
                     'context': 'orange', 'message_suffix': '\'\\r\\n\''
                 },
             ]
@@ -165,7 +165,7 @@ class TestLines(object):
             file_content='{}\n'.format(content),
             expected_issues=[
                 {
-                    'rule': 'WSW002', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 5,
+                    'rule': 'WSC002', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 5,
                     'context': content, 'message_suffix': None
                 },
             ]
@@ -196,7 +196,7 @@ class TestLines(object):
             file_content='{}\n'.format(content),
             expected_issues=[
                 {
-                    'rule': 'WSW003', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': col,
+                    'rule': 'WSC003', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': col,
                     'context': content, 'message_suffix': None
                 },
             ]
@@ -214,7 +214,7 @@ class TestLines(object):
             file_content='{}\n'.format(content),
             expected_issues=[
                 {
-                    'rule': 'WSW004', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': col,
+                    'rule': 'WSC004', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': col,
                     'context': content, 'message_suffix': None
                 },
             ]
@@ -228,23 +228,23 @@ class TestComplexCases(object):
             file_content=' \tpineapple \rbanana',
             expected_issues=[
                 {
-                    'rule': 'WSW001', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 13,
+                    'rule': 'WSC001', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 13,
                     'context': ' \tpineapple ', 'message_suffix': '\'\\r\''
                 },
                 {
-                    'rule': 'WSW002', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 12,
+                    'rule': 'WSC002', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 12,
                     'context': ' \tpineapple ', 'message_suffix': None
                 },
                 {
-                    'rule': 'WSW003', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 3,
+                    'rule': 'WSC003', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 3,
                     'context': ' \tpineapple ', 'message_suffix': None
                 },
                 {
-                    'rule': 'WSW004', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 2,
+                    'rule': 'WSC004', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 2,
                     'context': ' \tpineapple ', 'message_suffix': None
                 },
                 {
-                    'rule': 'WSW005', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
+                    'rule': 'WSC005', 'path': MOCKED_FILE_PATH, 'line': 2, 'col': 7,
                     'context': 'banana', 'message_suffix': None
                 },
             ]
@@ -254,18 +254,18 @@ class TestComplexCases(object):
 class TestExcludingRules(object):
     def test_add_one_exclusion_for_one_issue_type(self):
         assert_check_file(
-            checker=WhitespaceChecker(excluded_rules=['WSW001']),
+            checker=WhitespaceChecker(excluded_rules=['WSC001']),
             file_content='apple\r',
             expected_issues=[]
         )
 
     def test_add_one_exclusion_for_two_issue_types(self):
         assert_check_file(
-            checker=WhitespaceChecker(excluded_rules=['WSW001']),
+            checker=WhitespaceChecker(excluded_rules=['WSC001']),
             file_content='\tapple\r',
             expected_issues=[
                 {
-                    'rule': 'WSW004', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 1,
+                    'rule': 'WSC004', 'path': MOCKED_FILE_PATH, 'line': 1, 'col': 1,
                     'context': '\tapple', 'message_suffix': None
                 },
             ]
@@ -273,7 +273,7 @@ class TestExcludingRules(object):
 
     def test_add_two_exclusions_for_one_issue_types(self):
         assert_check_file(
-            checker=WhitespaceChecker(excluded_rules=['WSW001', 'WSW004']),
+            checker=WhitespaceChecker(excluded_rules=['WSC001', 'WSC004']),
             file_content='apple\r',
             expected_issues=[]
         )
