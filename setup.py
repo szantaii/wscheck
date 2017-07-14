@@ -5,6 +5,8 @@ import sys
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
+from wscheck.version import Version
+
 
 class PyTest(TestCommand):
     user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
@@ -31,7 +33,7 @@ def read(*path):
 
 setup(
     name='wscheck',
-    version='0.1.6',
+    version=Version().version,
     url='https://github.com/andras-tim/wscheck',
     license='GPLv3',
     author='Andras Tim',

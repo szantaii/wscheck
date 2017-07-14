@@ -8,6 +8,7 @@ import sys
 
 from checker import WhitespaceChecker, RULES
 from printer import ErrorPrinter
+from version import Version
 
 
 def main():
@@ -45,7 +46,7 @@ def _get_args():
             raise argparse.ArgumentTypeError('Unknown rule')
         return rule_name
 
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=WideHelpFormatter)
+    parser = argparse.ArgumentParser(description=__doc__, version=Version().release, formatter_class=WideHelpFormatter)
 
     parser.add_argument('paths', type=str, nargs='*',
                         help='Path of files for test')

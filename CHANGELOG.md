@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Changed
 - Renamed rule IDs from **WSW000** to **WSC000** for better fit to the name of `wscheck`
+- Set version number for all components
 
 
 ## [0.1.6] - 2016-08-31
