@@ -119,7 +119,7 @@ class WhitespaceChecker(object):
         :type file_path: str
         :type lines: list
         """
-        if len(lines) == 0:
+        if lines == [('', '')]:
             return
 
         empty_lines = 0
