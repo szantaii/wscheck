@@ -4,6 +4,7 @@ os:
   - linux
 python:
   - 2.7
+  - pypy
 
 before_cache:
   - rm -f $HOME/.cache/pip/log/debug.log
