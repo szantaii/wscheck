@@ -48,18 +48,26 @@ class WhitespaceChecker(object):
         """
         :type file_path: str
         """
-        lines = self._read_file_lines_w_eol(file_path)
-        for checker in self._checkers:
-            checker(file_path, lines)
-
-    def _read_file_lines_w_eol(self, file_path):
-        """
-        :type file_path: str
-        :rtype: list
-        """
         with open(file_path) as fd:
             file_content = fd.read()
-        lines = self._LINE_TEMPLATE.findall(file_content)
+
+        self.check_text(file_content, source_path=file_path)
+
+    def check_text(self, text, source_path='<string>'):
+        """
+        :type text: str
+        :type source_path: str
+        """
+        lines = self._read_text_lines_w_eol(text)
+        for checker in self._checkers:
+            checker(source_path, lines)
+
+    def _read_text_lines_w_eol(self, text):
+        """
+        :type text: str
+        :rtype: list
+        """
+        lines = self._LINE_TEMPLATE.findall(text)
 
         # Workaround: can not match end of string in multi line regexp
         if len(lines) > 1 and lines[-2][1] == '':
@@ -67,9 +75,9 @@ class WhitespaceChecker(object):
 
         return lines
 
-    def _check_by_lines(self, file_path, lines):
+    def _check_by_lines(self, source_path, lines):
         """
-        :type file_path: str
+        :type source_path: str
         :type lines: list
         """
         for line, line_text_eol in enumerate(lines, start=1):
@@ -77,13 +85,13 @@ class WhitespaceChecker(object):
 
             if 'WSC001' in self._rules:
                 if not line_eol == '' and not line_eol == '\n':
-                    self._add_issue(rule='WSC001', path=file_path, line=line, col=len(line_text) + 1, context=line_text,
+                    self._add_issue(rule='WSC001', path=source_path, line=line, col=len(line_text) + 1, context=line_text,
                                     message_suffix='{!r}'.format(line_eol))
 
             if 'WSC002' in self._rules:
                 tailing_whitespace_match = self._TAILING_WHITESPACE_TEMPLATE.search(line_text)
                 if tailing_whitespace_match is not None:
-                    self._add_issue(rule='WSC002', path=file_path, line=line, col=tailing_whitespace_match.start() + 1, context=line_text)
+                    self._add_issue(rule='WSC002', path=source_path, line=line, col=tailing_whitespace_match.start() + 1, context=line_text)
 
             if line_text.strip() == '':
                 continue
@@ -94,12 +102,12 @@ class WhitespaceChecker(object):
 
                 if 'WSC003' in self._rules:
                     if not len(line_indent.replace('\t', '    ')) % 2 == 0:
-                        self._add_issue(rule='WSC003', path=file_path, line=line, col=len(line_indent) + 1, context=line_text)
+                        self._add_issue(rule='WSC003', path=source_path, line=line, col=len(line_indent) + 1, context=line_text)
 
                 if 'WSC004' in self._rules:
                     character_match = self._NOT_SPACES_TEMPLATE.search(line_indent)
                     if character_match is not None:
-                        self._add_issue(rule='WSC004', path=file_path, line=line, col=character_match.start() + 1,
+                        self._add_issue(rule='WSC004', path=source_path, line=line, col=character_match.start() + 1,
                                         context=line_text)
 
     def _add_issue(self, rule, path, line, col, context, message_suffix=None):
@@ -114,9 +122,9 @@ class WhitespaceChecker(object):
         self._issues.append({'rule': rule, 'path': path, 'line': line, 'col': col, 'context': context,
                             'message_suffix': message_suffix})
 
-    def _check_eof(self, file_path, lines):
+    def _check_eof(self, source_path, lines):
         """
-        :type file_path: str
+        :type source_path: str
         :type lines: list
         """
         if lines == [('', '')]:
@@ -131,11 +139,11 @@ class WhitespaceChecker(object):
         if 'WSC005' in self._rules:
             if empty_lines == 0:
                 line_text = lines[-1][0]
-                self._add_issue(rule='WSC005', path=file_path, line=len(lines), col=len(line_text) + 1, context=line_text)
+                self._add_issue(rule='WSC005', path=source_path, line=len(lines), col=len(line_text) + 1, context=line_text)
 
         if 'WSC006' in self._rules:
             if empty_lines > 1:
                 shift = min(len(lines), empty_lines + 1)
                 line_text = lines[-shift][0]
-                self._add_issue(rule='WSC006', path=file_path, line=len(lines) - shift + 1, col=len(line_text) + 1,
+                self._add_issue(rule='WSC006', path=source_path, line=len(lines) - shift + 1, col=len(line_text) + 1,
                                 context=line_text, message_suffix='(+{})'.format(empty_lines - 1))
