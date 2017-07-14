@@ -1,0 +1,5 @@
+WSC002
+======
+
+Tailing whitespace
+------------------

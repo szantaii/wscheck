@@ -5,6 +5,8 @@ import sys
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
+from wscheck.version import Version
+
 
 class PyTest(TestCommand):
     user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
@@ -17,12 +19,10 @@ class PyTest(TestCommand):
         self.test_args = []
         self.test_suite = True
 
-    def finalize_options(self):
-        pass
-
     def run_tests(self):
+        import shlex
         import pytest
-        exit_code = pytest.main(self.pytest_args)
+        exit_code = pytest.main(shlex.split(self.pytest_args))
         sys.exit(exit_code)
 
 
@@ -33,7 +33,7 @@ def read(*path):
 
 setup(
     name='wscheck',
-    version='0.1.6',
+    version=Version().version,
     url='https://github.com/andras-tim/wscheck',
     license='GPLv3',
     author='Andras Tim',

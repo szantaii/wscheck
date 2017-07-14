@@ -36,7 +36,6 @@ class ErrorPrinter(object):
             print('\nIn {path} line {row}:\n{context}\n{message_indent}^-- {message}'.format(
                 path=issue['path'],
                 row=issue['line'],
-                col=issue['col'],
                 context=context,
                 message_indent=' ' * message_indent,
                 message='{}: {}'.format(issue['rule'], message)

@@ -4,11 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Added
+- Added documentation for rules
+
+### Changed
+- Renamed rule IDs from **WSW000** to **WSC000** for better fit to the name of `wscheck`
+- Set version number for all components
 
 
 ## [0.1.6] - 2016-08-31
 ### Fixed
-- Fixed column calculation of WSW003
+- Fixed column calculation of [WSW003][WSC003] rule
 
 
 ## [0.1.5] - 2016-08-31
@@ -48,7 +54,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## 0.1.0 - 2016-08-04
 ### Added
-- ``wscheck`` lib with command line bin
+- `wscheck` lib with command line bin (with [WSW001][WSC001], [WSW002][WSC002], [WSW003][WSC003], [WSW004][WSC004],
+  [WSW005][WSC005], [WSW006][WSC006] rules)
 
 
 [unreleased]: https://github.com/andras-tim/wscheck/compare/v0.1.6...HEAD
@@ -58,3 +65,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [0.1.3]: https://github.com/andras-tim/wscheck/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/andras-tim/wscheck/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/andras-tim/wscheck/compare/v0.1.0...v0.1.1
+
+[WSC001]: https://wscheck.readthedocs.io/en/latest/rules/WSC001.html
+[WSC002]: https://wscheck.readthedocs.io/en/latest/rules/WSC002.html
+[WSC003]: https://wscheck.readthedocs.io/en/latest/rules/WSC003.html
+[WSC004]: https://wscheck.readthedocs.io/en/latest/rules/WSC004.html
+[WSC005]: https://wscheck.readthedocs.io/en/latest/rules/WSC005.html
+[WSC006]: https://wscheck.readthedocs.io/en/latest/rules/WSC006.html

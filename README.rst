@@ -1,9 +1,9 @@
 WSCheck
 =======
 
-|PyPi| |Build| |DependencyStatus| |CodeQuality| |Coverage| |License|
+|PyPi| |Build| |Docs| |DependencyStatus| |CodeQuality| |Coverage| |License|
 
-Whitespace checking tool.
+`WSCheck <https://github.com/andras-tim/wscheck>`__ is a static analysis tool for whitespaces.
 
 
 Installation
@@ -25,13 +25,15 @@ Usage
 
 .. code-block:: bash
 
-    $ wscheck --exclude WSW002 --exclude WSW003 orange.sh
+    $ wscheck --exclude WSC002 --exclude WSC003 orange.sh
 
 **Get list of available rules:**
 
 .. code-block:: bash
 
     $ wscheck --list-rules
+
+For details about rules, see :ref:`Rules <rules>`
 
 **Write CheckStyle output too:**
 
@@ -47,27 +49,27 @@ Example
 
     $ wscheck examples/multiple_problems.py
 
-.. code-block::
+.. code-block:: none
 
     In examples/multiple_problems.py line 5:
             self.print_to_pdf()
-                               ^-- WSW002: Tailing whitespace
+                               ^-- WSC002: Tailing whitespace
 
     In examples/multiple_problems.py line 8:
        def __generate_pdf(self):
-       ^-- WSW003: Indentation is not multiple of 2
+       ^-- WSC003: Indentation is not multiple of 2
 
     In examples/multiple_problems.py line 9:
             pdf_generator = _LabelPdfGenerator()
-                                                ^-- WSW001: Bad line ending '\r\n'
+                                                ^-- WSC001: Bad line ending '\r\n'
 
     In examples/multiple_problems.py line 15:
     --->--->os.makedirs(self.__print_cache_dir, exist_ok=True)
-    ^-- WSW004: Indentation with non-space character
+    ^-- WSC004: Indentation with non-space character
 
     In examples/multiple_problems.py line 21:
             return os.path.join(self.__print_cache_dir, pdf_name)
-                                                                 ^-- WSW006: Too many newline at end of file (+1)
+                                                                 ^-- WSC006: Too many newline at end of file (+1)
 
 
 Bugs
@@ -82,9 +84,12 @@ Bugs or suggestions? Visit the `issue tracker <https://github.com/andras-tim/wsc
 .. |DependencyStatus| image:: https://gemnasium.com/andras-tim/wscheck.svg
     :target: https://gemnasium.com/andras-tim/wscheck
     :alt: Dependency Status
-.. |PyPi| image:: https://img.shields.io/pypi/dm/wscheck.svg
+.. |PyPi| image:: https://img.shields.io/badge/download-PyPi-green.svg
     :target: https://pypi.python.org/pypi/wscheck
     :alt: Python Package
+.. |Docs| image:: https://readthedocs.org/projects/wscheck/badge/?version=latest
+    :target: http://wscheck.readthedocs.org/latest/
+    :alt: Documentation Status
 .. |License| image:: https://img.shields.io/badge/license-GPL%203.0-blue.svg
     :target: https://github.com/andras-tim/wscheck/blob/master/LICENSE
     :alt: License
