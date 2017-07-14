@@ -90,3 +90,5 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Performance measurements
+.benchmark/

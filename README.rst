@@ -78,6 +78,36 @@ Bugs
 Bugs or suggestions? Visit the `issue tracker <https://github.com/andras-tim/wscheck/issues>`__.
 
 
+Benchmark
+---------
+
+* You can run benchmarks and generate histogram for compare calls to each other:
+
+    .. code-block:: bash
+
+        tox -- tests/performance --benchmark-histogram
+
+* You can run benchmarks and save results for later compare:
+
+    .. code-block:: bash
+
+        tox -- tests/performance --benchmark-save=foo
+
+* You can run benchmarks and compare with the last saved result with fail treshold:
+
+    .. code-block:: bash
+
+        tox -- tests/performance --benchmark-histogram --benchmark-compare --benchmark-compare-fail=mean:5% --benchmark-sort=name
+
+* You can run benchmarks and compare with the last saved result by groups:
+
+    .. code-block:: bash
+
+        tox -- tests/performance --benchmark-histogram --benchmark-compare --benchmark-group-by=func
+
+        tox -- tests/performance --benchmark-histogram --benchmark-compare --benchmark-group-by=name
+
+
 .. |Build| image:: https://travis-ci.org/andras-tim/wscheck.svg?branch=master
     :target: https://travis-ci.org/andras-tim/wscheck/branches
     :alt: Build Status

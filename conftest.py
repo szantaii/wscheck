@@ -1,6 +1,32 @@
-# Pytest config for this test directory
+"""
+Pytest config for this test directory
+https://docs.pytest.org/en/latest/writing_plugins.html#pytest-hook-reference
+"""
 import pytest
 from _pytest.python import Function
+
+
+def pytest_addoption(parser):
+    """
+    :type parser: _pytest.config.Parser
+    """
+    parser.addini('benchmark_storage', 'Specify a different path to store the runs', type='pathlist')
+    parser.addini('benchmark_histogram', 'Plot graphs of min/max/avg/stddev over time', type='pathlist')
+
+
+def pytest_cmdline_main(config):
+    """
+    :type config: _pytest.config.Config
+    """
+    if hasattr(config.option, 'benchmark_storage'):
+        storage_paths = config.getini('benchmark_storage')
+        if storage_paths:
+            config.option.benchmark_storage = storage_paths[0].strpath
+
+    if hasattr(config.option, 'benchmark_histogram'):
+        histogram_paths = config.getini('benchmark_histogram')
+        if histogram_paths:
+            config.option.benchmark_histogram = histogram_paths
 
 
 def pytest_itemcollected(item):
