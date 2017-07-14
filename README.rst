@@ -1,9 +1,9 @@
 WSCheck
 =======
 
-|PyPi| |Build| |DependencyStatus| |CodeQuality| |Coverage| |License|
+|PyPi| |Build| |Docs| |DependencyStatus| |CodeQuality| |Coverage| |License|
 
-Whitespace checking tool.
+`WSCheck <https://github.com/andras-tim/wscheck>`__ is a static analysis tool for whitespaces.
 
 
 Installation
@@ -33,6 +33,8 @@ Usage
 
     $ wscheck --list-rules
 
+For details about rules, see :ref:`Rules <rules>`
+
 **Write CheckStyle output too:**
 
 .. code-block:: bash
@@ -47,7 +49,7 @@ Example
 
     $ wscheck examples/multiple_problems.py
 
-.. code-block::
+.. code-block:: none
 
     In examples/multiple_problems.py line 5:
             self.print_to_pdf()
@@ -85,6 +87,9 @@ Bugs or suggestions? Visit the `issue tracker <https://github.com/andras-tim/wsc
 .. |PyPi| image:: https://img.shields.io/badge/download-PyPi-green.svg
     :target: https://pypi.python.org/pypi/wscheck
     :alt: Python Package
+.. |Docs| image:: https://readthedocs.org/projects/wscheck/badge/?version=latest
+    :target: http://wscheck.readthedocs.org/latest/
+    :alt: Documentation Status
 .. |License| image:: https://img.shields.io/badge/license-GPL%203.0-blue.svg
     :target: https://github.com/andras-tim/wscheck/blob/master/LICENSE
     :alt: License

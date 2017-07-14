@@ -1,0 +1,5 @@
+WSC004
+======
+
+Indentation with non-space character
+------------------------------------
