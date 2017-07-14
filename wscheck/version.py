@@ -1,4 +1,4 @@
-from . import __version__
+__version__ = (1, 0, 1)
 
 
 class Version:

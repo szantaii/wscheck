@@ -4,6 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+
+
+## [1.0.1] - 2017-07-14
+### Fixed
+- Fixed versioning
+
+
+## [1.0.0] - 2017-07-14
 ### Added
 - Added documentation for rules
 
@@ -58,9 +66,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   [WSW005][WSC005], [WSW006][WSC006] rules)
 
 
-[unreleased]: https://github.com/andras-tim/wscheck/compare/v0.1.6...HEAD
-[0.1.4]: https://github.com/andras-tim/wscheck/compare/v0.1.5...v0.1.6
-[0.1.4]: https://github.com/andras-tim/wscheck/compare/v0.1.4...v0.1.5
+[unreleased]: https://github.com/andras-tim/wscheck/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/andras-tim/wscheck/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/andras-tim/wscheck/compare/v0.1.6...v1.0.0
+[0.1.6]: https://github.com/andras-tim/wscheck/compare/v0.1.5...v0.1.6
+[0.1.5]: https://github.com/andras-tim/wscheck/compare/v0.1.4...v0.1.5
 [0.1.4]: https://github.com/andras-tim/wscheck/compare/v0.1.3...v0.1.4
 [0.1.3]: https://github.com/andras-tim/wscheck/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/andras-tim/wscheck/compare/v0.1.1...v0.1.2
