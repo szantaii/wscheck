@@ -1,6 +1,6 @@
 import pytest
 
-from wscheck.checker import WhitespaceChecker
+from wscheck.checker import WhitespaceChecker, RULES
 from tests.common import patch_open_read
 
 MOCKED_FILE_PATH = '/foo/bar'
@@ -277,3 +277,9 @@ class TestExcludingRules(object):
             file_content='apple\r',
             expected_issues=[]
         )
+
+    def test_exclude_all_rules_makes_error(self):
+        with pytest.raises(RuntimeError) as e:
+            WhitespaceChecker(excluded_rules=list(RULES))
+
+        assert 'No rules to check' in str(e)
