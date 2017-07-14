@@ -33,7 +33,7 @@ Usage
 
     $ wscheck --list-rules
 
-For details about rules, see :ref:`Rules <rules>`
+For details about rules, see `Rules <http://wscheck.readthedocs.io/en/latest/rules/index.html>`__
 
 **Write CheckStyle output too:**
 
@@ -85,10 +85,10 @@ Bugs or suggestions? Visit the `issue tracker <https://github.com/andras-tim/wsc
     :target: https://gemnasium.com/andras-tim/wscheck
     :alt: Dependency Status
 .. |PyPi| image:: https://img.shields.io/badge/download-PyPi-green.svg
-    :target: https://pypi.python.org/pypi/wscheck
+    :target: https://pypi.org/project/wscheck/
     :alt: Python Package
 .. |Docs| image:: https://readthedocs.org/projects/wscheck/badge/?version=latest
-    :target: http://wscheck.readthedocs.org/latest/
+    :target: http://wscheck.readthedocs.org/en/latest/
     :alt: Documentation Status
 .. |License| image:: https://img.shields.io/badge/license-GPL%203.0-blue.svg
     :target: https://github.com/andras-tim/wscheck/blob/master/LICENSE

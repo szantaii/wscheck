@@ -3,8 +3,6 @@
 Rules
 =====
 
-.. _rules:
-
 .. index:: rules
 
 .. toctree::

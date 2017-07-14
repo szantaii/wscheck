@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Fixed
+- Fixed the HTML generation error of readme on GitHub and PyPi
 
 
 ## [1.0.1] - 2017-07-14
