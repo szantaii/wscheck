@@ -94,7 +94,7 @@ Bugs or suggestions? Visit the `issue tracker <https://github.com/andras-tim/wsc
     :target: https://github.com/andras-tim/wscheck/blob/master/LICENSE
     :alt: License
 
-.. |CodeQuality| image:: https://www.codacy.com/project/badge/345af34d2f3c432bb528a0fb48167d92
+.. |CodeQuality| image:: https://www.codacy.com/project/badge/448b73826c97497d8bf0e2970cba1156
     :target: https://www.codacy.com/app/andras-tim/wscheck
     :alt: Code Quality
 .. |Coverage| image:: https://coveralls.io/repos/andras-tim/wscheck/badge.svg?branch=master&service=github
