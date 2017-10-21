@@ -45,9 +45,27 @@ class TestEof(object):
             },
         ] == checker.issues
 
-    def test_one_non_empty_line_w_lf_is_good(self, checker):
+    def test_one_empty_lines_at_end_is_good(self, checker):
         checker.check_text('apple\n')
         assert [] == checker.issues
+
+    def test_two_empty_lines_at_end_is_bad(self, checker):
+        checker.check_text('apple\n\n')
+        assert [
+            {
+                'rule': 'WSC006', 'path': '<string>', 'line': 1, 'col': 6,
+                'context': 'apple', 'message_suffix': '(+1)'
+            },
+        ] == checker.issues
+
+    def test_three_empty_lines_at_end_is_bad(self, checker):
+        checker.check_text('apple\n\n\n')
+        assert [
+            {
+                'rule': 'WSC006', 'path': '<string>', 'line': 1, 'col': 6,
+                'context': 'apple', 'message_suffix': '(+2)'
+            },
+        ] == checker.issues
 
     def test_two_non_empty_lines_but_missing_lf_after_last_is_bad(self, checker):
         checker.check_text('apple\norange')
