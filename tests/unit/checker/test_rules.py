@@ -1,6 +1,6 @@
 import pytest
 
-from wscheck.checker import WhitespaceChecker, RULES
+from wscheck.checker import WhitespaceChecker
 
 
 @pytest.fixture
@@ -9,6 +9,11 @@ def checker():
 
 
 class TestEof(object):
+    """
+    WSC005: No newline at end of file
+    WSC006: Too many newline at end of file
+    """
+
     def test_one_empty_line_is_good(self, checker):
         checker.check_text('')
         assert [] == checker.issues
@@ -59,6 +64,13 @@ class TestEof(object):
 
 
 class TestLines(object):
+    """
+    WSC001: Bad line ending
+    WSC002: Tailing whitespace
+    WSC003: Indentation is not multiple of 2
+    WSC004: Indentation with non-space character
+    """
+
     def test_lf_is_good_eol(self, checker):
         checker.check_text('orange\nbanana\n')
         assert [] == checker.issues
@@ -182,62 +194,3 @@ class TestComplexCases(object):
                 'context': 'banana', 'message_suffix': None
             },
         ] == checker.issues
-
-
-class TestExcludingRules(object):
-    def test_add_one_exclusion_for_one_issue_type(self):
-        checker = WhitespaceChecker(excluded_rules=['WSC001'])
-        checker.check_text('apple\r')
-        assert [] == checker.issues
-
-    def test_add_one_exclusion_for_two_issue_types(self):
-        checker = WhitespaceChecker(excluded_rules=['WSC001'])
-        checker.check_text('\tapple\r')
-        assert [
-            {
-                'rule': 'WSC004', 'path': '<string>', 'line': 1, 'col': 1,
-                'context': '\tapple', 'message_suffix': None
-            },
-        ] == checker.issues
-
-    def test_add_two_exclusions_for_one_issue_types(self):
-        checker = WhitespaceChecker(excluded_rules=['WSC001', 'WSC004'])
-        checker.check_text('apple\r')
-        assert [] == checker.issues
-
-    def test_exclude_all_rules_makes_error(self):
-        with pytest.raises(RuntimeError) as e:
-            WhitespaceChecker(excluded_rules=list(RULES))
-
-        assert 'No rules to check' in str(e)
-
-
-class AlwaysFailChecker(WhitespaceChecker):
-    def __init__(self):
-        super(AlwaysFailChecker, self).__init__()
-        self._checkers = [self._check_for_fail]
-
-    def _check_for_fail(self, source_path, lines):
-        self._add_issue(rule='WSC000', path=source_path, line=1, col=1, context='')
-
-
-class TestSourcePath(object):
-    def test_without_specified_source(self):
-        fail_checker = AlwaysFailChecker()
-        fail_checker.check_text('')
-
-        assert [
-            {'rule': 'WSC000', 'path': '<string>', 'line': 1, 'col': 1, 'context': '', 'message_suffix': None},
-        ] == fail_checker.issues
-
-    @pytest.mark.parametrize('source_path', [
-        ('/empty/file', ''),
-        ('/contains/anything', ' foo\t\r\nbar '),
-    ])
-    def test_with_source(self, source_path):
-        fail_checker = AlwaysFailChecker()
-        fail_checker.check_text('', source_path)
-
-        assert [
-            {'rule': 'WSC000', 'path': source_path, 'line': 1, 'col': 1, 'context': '', 'message_suffix': None},
-        ] == fail_checker.issues

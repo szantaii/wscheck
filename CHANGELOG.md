@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Added PyPy support
 - Added performance measurement tests
+### Changed
+- Restructured test files
 
 ### Fixed
 - Fixed the HTML generation error of readme on GitHub and PyPi

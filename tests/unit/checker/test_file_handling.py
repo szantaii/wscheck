@@ -16,7 +16,7 @@ def checker(mocker):
     ('/empty/file', ''),
     ('/contains/anything', ' foo\t\r\nbar '),
 ])
-def test_one_empty_line_is_good(checker, file_path, file_content):
+def test_integration(checker, file_path, file_content):
     mocked_files = {file_path: file_content}
 
     with patch_open_read(mocked_files):
