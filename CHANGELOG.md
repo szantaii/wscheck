@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 ### Added
+- Added rule for checking empty lines at the beginning of the files ([WSC007])
 - Added PyPy support
 - Added performance measurement tests
 ### Changed
@@ -90,3 +91,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [WSC004]: https://wscheck.readthedocs.io/en/latest/rules/WSC004.html
 [WSC005]: https://wscheck.readthedocs.io/en/latest/rules/WSC005.html
 [WSC006]: https://wscheck.readthedocs.io/en/latest/rules/WSC006.html
+[WSC007]: https://wscheck.readthedocs.io/en/latest/rules/WSC007.html

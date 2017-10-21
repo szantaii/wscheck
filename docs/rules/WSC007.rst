@@ -1,0 +1,7 @@
+WSC007
+======
+
+File begins with newline
+------------------------
+
+Check empty lines before the first non empty line.

@@ -51,25 +51,29 @@ Example
 
 .. code-block:: none
 
-    In examples/multiple_problems.py line 5:
+    In examples/multiple_problems.py line 2:
+    class LabelPrinter:
+    ^-- WSC007: File begins with newline
+
+    In examples/multiple_problems.py line 6:
             self.print_to_pdf()
                                ^-- WSC002: Tailing whitespace
 
-    In examples/multiple_problems.py line 8:
+    In examples/multiple_problems.py line 9:
        def __generate_pdf(self):
        ^-- WSC003: Indentation is not multiple of 2
 
-    In examples/multiple_problems.py line 9:
+    In examples/multiple_problems.py line 10:
             pdf_generator = _LabelPdfGenerator()
                                                 ^-- WSC001: Bad line ending '\r\n'
 
-    In examples/multiple_problems.py line 15:
+    In examples/multiple_problems.py line 16:
     --->--->os.makedirs(self.__print_cache_dir, exist_ok=True)
     ^-- WSC004: Indentation with non-space character
 
-    In examples/multiple_problems.py line 21:
+    In examples/multiple_problems.py line 22:
             return os.path.join(self.__print_cache_dir, pdf_name)
-                                                                 ^-- WSC006: Too many newline at end of file (+1)
+                                                             ^-- WSC006: Too many newline at end of file (+1)
 
 
 Bugs

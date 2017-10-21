@@ -76,9 +76,38 @@ class TestEof(object):
             },
         ] == checker.issues
 
-    def test_new_lines_at_top_is_good(self, checker):
+
+class TestBof(object):
+    """
+    WSC007: File begins with newline
+    """
+
+    def test_one_empty_line_before_non_empty_lines_is_bad(self, checker):
+        checker.check_text('\napple\n')
+        assert [
+            {
+                'rule': 'WSC007', 'path': '<string>', 'line': 2, 'col': 1,
+                'context': 'apple', 'message_suffix': None
+            },
+        ] == checker.issues
+
+    def test_two_empty_line_before_non_empty_lines_is_bad(self, checker):
+        checker.check_text('\n\napple\n')
+        assert [
+            {
+                'rule': 'WSC007', 'path': '<string>', 'line': 3, 'col': 1,
+                'context': 'apple', 'message_suffix': None
+            },
+        ] == checker.issues
+
+    def test_three_empty_line_before_non_empty_lines_is_bad(self, checker):
         checker.check_text('\n\n\napple\n')
-        assert [] == checker.issues
+        assert [
+            {
+                'rule': 'WSC007', 'path': '<string>', 'line': 4, 'col': 1,
+                'context': 'apple', 'message_suffix': None
+            },
+        ] == checker.issues
 
 
 class TestLines(object):
@@ -189,26 +218,30 @@ class TestLines(object):
 
 class TestComplexCases(object):
     def test_multiple_issues(self, checker):
-        checker.check_text(' \tpineapple \rbanana')
+        checker.check_text('\n\n \tpineapple \rbanana')
         assert [
             {
-                'rule': 'WSC001', 'path': '<string>', 'line': 1, 'col': 13,
+                'rule': 'WSC001', 'path': '<string>', 'line': 3, 'col': 13,
                 'context': ' \tpineapple ', 'message_suffix': '\'\\r\''
             },
             {
-                'rule': 'WSC002', 'path': '<string>', 'line': 1, 'col': 12,
+                'rule': 'WSC002', 'path': '<string>', 'line': 3, 'col': 12,
                 'context': ' \tpineapple ', 'message_suffix': None
             },
             {
-                'rule': 'WSC003', 'path': '<string>', 'line': 1, 'col': 3,
+                'rule': 'WSC003', 'path': '<string>', 'line': 3, 'col': 3,
                 'context': ' \tpineapple ', 'message_suffix': None
             },
             {
-                'rule': 'WSC004', 'path': '<string>', 'line': 1, 'col': 2,
+                'rule': 'WSC004', 'path': '<string>', 'line': 3, 'col': 2,
                 'context': ' \tpineapple ', 'message_suffix': None
             },
             {
-                'rule': 'WSC005', 'path': '<string>', 'line': 2, 'col': 7,
+                'rule': 'WSC005', 'path': '<string>', 'line': 4, 'col': 7,
                 'context': 'banana', 'message_suffix': None
+            },
+            {
+                'rule': 'WSC007', 'path': '<string>', 'line': 3, 'col': 1,
+                'context': ' \tpineapple ', 'message_suffix': None
             },
         ] == checker.issues

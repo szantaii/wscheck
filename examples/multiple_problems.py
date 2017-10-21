@@ -1,3 +1,4 @@
+
 class LabelPrinter:
     def print(self, printer: (Printer, None)=None, copies: int=1):
         printer = printer or Printer(config.App.LABEL_PRINTER)

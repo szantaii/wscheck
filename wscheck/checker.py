@@ -7,6 +7,7 @@ RULES = {
     'WSC004': 'Indentation with non-space character',
     'WSC005': 'No newline at end of file',
     'WSC006': 'Too many newline at end of file',
+    'WSC007': 'File begins with newline',
 }
 
 
@@ -32,7 +33,8 @@ class WhitespaceChecker(object):
 
         self._checkers = [
             self._check_by_lines,
-            self._check_eof
+            self._check_eof,
+            self._check_bof,
         ]
 
         self._issues = []
@@ -121,6 +123,26 @@ class WhitespaceChecker(object):
         """
         self._issues.append({'rule': rule, 'path': path, 'line': line, 'col': col, 'context': context,
                             'message_suffix': message_suffix})
+
+    def _check_bof(self, source_path, lines):
+        """
+        :type source_path: str
+        :type lines: list
+        """
+        empty_lines = 0
+        for line_text, _ in tuple(lines):
+            if not line_text == '':
+                break
+            empty_lines += 1
+
+        if empty_lines == len(lines):
+            # This will be reported as WSC006
+            return
+
+        if 'WSC007' in self._rules:
+            if empty_lines > 0:
+                line_text = lines[empty_lines][0]
+                self._add_issue(rule='WSC007', path=source_path, line=empty_lines + 1, col=1, context=line_text)
 
     def _check_eof(self, source_path, lines):
         """
