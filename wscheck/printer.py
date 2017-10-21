@@ -16,6 +16,8 @@ class ErrorPrinter(object):
         self._issues = sorted(issues, key=lambda issue: (issue['path'], issue['line'], issue['col']))
 
     def print_to_tty(self):
+        glue_text = ''
+
         for issue in self._issues:
             context = issue['context']
             message_indent = issue['col'] - 1
@@ -33,13 +35,16 @@ class ErrorPrinter(object):
 
                 index += 4
 
-            print('\nIn {path} line {row}:\n{context}\n{message_indent}^-- {message}'.format(
+            print('{glue}In {path} line {row}:\n{context}\n{message_indent}^-- {message}'.format(
+                glue=glue_text,
                 path=issue['path'],
                 row=issue['line'],
                 context=context,
                 message_indent=' ' * message_indent,
                 message='{}: {}'.format(issue['rule'], message)
             ))
+
+            glue_text = '\n'
 
     def _get_message(self, issue):
         """

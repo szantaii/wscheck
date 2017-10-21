@@ -47,7 +47,6 @@ def printer():
 
 def test_print_to_tty(capfd, printer):
     expected_stdout = '\n'.join([
-        '',
         'In /bad_file line 10:',
         'foo',
         '   ^-- WSC001: Bad line ending \'\\r\\n\'',
