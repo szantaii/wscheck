@@ -11,21 +11,24 @@ from printer import ErrorPrinter
 from version import Version
 
 
-def main():
-    args = _get_args()
+def main(*args):
+    """
+    :type args: str
+    """
+    parsed_args = _parse_args(args)
 
-    if args.list_rules:
+    if parsed_args.list_rules:
         _list_rules()
         return 0
 
-    checker = WhitespaceChecker(excluded_rules=args.excludes)
-    for file_path in args.paths:
+    checker = WhitespaceChecker(excluded_rules=parsed_args.excludes)
+    for file_path in parsed_args.paths:
         checker.check_file(file_path)
 
-    printer = ErrorPrinter(args.paths, checker.issues)
+    printer = ErrorPrinter(parsed_args.paths, checker.issues)
     printer.print_to_tty()
-    if args.output_checkstyle:
-        printer.write_checkstyle(args.output_checkstyle)
+    if parsed_args.output_checkstyle:
+        printer.write_checkstyle(parsed_args.output_checkstyle)
 
     if checker.issues:
         return 1
@@ -40,13 +43,17 @@ def _list_rules():
         print(row_template.format(rule, message))
 
 
-def _get_args():
+def _parse_args(args):
+    """
+    :type args: tuple[str]
+    """
     def rule(rule_name):
         if rule_name not in RULES:
             raise argparse.ArgumentTypeError('Unknown rule')
         return rule_name
 
-    parser = argparse.ArgumentParser(description=__doc__, version=Version().release, formatter_class=WideHelpFormatter)
+    parser = argparse.ArgumentParser(prog='wscheck', description=__doc__, version=Version().release,
+                                     formatter_class=WideHelpFormatter)
 
     parser.add_argument('paths', type=str, nargs='*',
                         help='Path of files for test')
@@ -58,12 +65,12 @@ def _get_args():
     parser.add_argument('--checkstyle', dest='output_checkstyle', type=str,
                         help='Path of checkstyle output')
 
-    args = parser.parse_args()
+    parsed_args = parser.parse_args(args)
 
-    if not args.list_rules and not args.paths:
+    if not parsed_args.list_rules and not parsed_args.paths:
         parser.error('paths')
 
-    return args
+    return parsed_args
 
 
 class WideHelpFormatter(argparse.RawDescriptionHelpFormatter):
@@ -76,4 +83,4 @@ class WideHelpFormatter(argparse.RawDescriptionHelpFormatter):
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(main(*sys.argv[1:]))
