@@ -1,5 +1,2 @@
-WSC002
-======
-
-Tailing whitespace
-------------------
+WSC002: Tailing whitespace
+==========================

@@ -1,5 +1,2 @@
-WSC005
-======
-
-No newline at end of file
--------------------------
+WSC005: No newline at end of file
+=================================

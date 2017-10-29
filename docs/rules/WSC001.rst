@@ -1,5 +1,2 @@
-WSC001
-======
-
-Bad line ending
----------------
+WSC001: Bad line ending
+=======================

@@ -1,5 +1,2 @@
-WSC003
-======
-
-Indentation is not multiple of 2
---------------------------------
+WSC003: Indentation is not multiple of 2
+========================================

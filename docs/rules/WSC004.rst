@@ -1,5 +1,2 @@
-WSC004
-======
-
-Indentation with non-space character
-------------------------------------
+WSC004: Indentation with non-space character
+============================================
