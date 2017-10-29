@@ -166,3 +166,18 @@ def test_wsc007(benchmark, text, expected_rules, expected_issue_count):
     File begins with newline
     """
     _measure(benchmark, text, expected_rules, expected_issue_count)
+
+
+@parametrize_with_names('text,expected_rules,expected_issue_count', {
+    'head_empty-3':     [_text(head=_line(suffix=DEFAULT_EOL * 3)),     ['WSC008'], CHECK_COUNT],   # noqa: E241,E501
+    'head_empty-21':    [_text(head=_line(suffix=DEFAULT_EOL * 21)),    ['WSC008'], CHECK_COUNT],   # noqa: E241,E501
+    'center_empty-3':   [_text(center=_line(suffix=DEFAULT_EOL * 3)),   ['WSC008'], CHECK_COUNT],   # noqa: E241,E501
+    'center_empty-21':  [_text(center=_line(suffix=DEFAULT_EOL * 21)),  ['WSC008'], CHECK_COUNT],   # noqa: E241,E501
+    'foot_empty-3':     [_text(foot=_line(prefix=DEFAULT_EOL * 3)),     ['WSC008'], CHECK_COUNT],   # noqa: E241,E501
+    'foot_empty-21':    [_text(foot=_line(prefix=DEFAULT_EOL * 21)),    ['WSC008'], CHECK_COUNT],   # noqa: E241,E501
+})
+def test_wsc008(benchmark, text, expected_rules, expected_issue_count):
+    """
+    More than 2 empty lines
+    """
+    _measure(benchmark, text, expected_rules, expected_issue_count)

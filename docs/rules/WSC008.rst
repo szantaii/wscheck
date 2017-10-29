@@ -1,0 +1,15 @@
+WSC008: More than 2 empty lines
+================================
+
+Alerting for more than 2 empty lines after the firs and before the last non-empty lines.
+
+
+Example
+-------
+
+.. test-wsc:: examples/WSC008_more_empty_lines.py
+
+    In <PATH> line 10:
+        os.makedirs(self.__print_cache_dir, exist_ok=True)
+                                                          ^-- WSC008: More than 2 empty lines (+1)
+

@@ -8,6 +8,7 @@ RULES = {
     'WSC005': 'No newline at end of file',
     'WSC006': 'Too many newline at end of file',
     'WSC007': 'File begins with newline',
+    'WSC008': 'More than 2 empty lines',
 }
 
 
@@ -82,8 +83,11 @@ class WhitespaceChecker(object):
         :type source_path: str
         :type lines: list
         """
+        empty_lines = 0
+
         for line, line_text_eol in enumerate(lines, start=1):
             line_text, line_eol = line_text_eol
+            stripped_line_text = line_text.strip()
 
             if 'WSC001' in self._rules:
                 if not line_eol == '' and not line_eol == '\n':
@@ -96,8 +100,16 @@ class WhitespaceChecker(object):
                     self._add_issue(rule='WSC002', path=source_path, line=line,
                                     col=tailing_whitespace_match.start() + 1, context=line_text)
 
-            if line_text.strip() == '':
+            if stripped_line_text == '':
+                empty_lines += 1
                 continue
+
+            if 'WSC008' in self._rules:
+                if empty_lines > 2:
+                    self._add_issue(rule='WSC008', path=source_path, line=line - empty_lines, col=1,
+                                    context=lines[line - empty_lines + 1][0],
+                                    message_suffix='(+{})'.format(empty_lines - 2))
+                empty_lines = 0
 
             indent_match = self._LINE_INDENT_TEMPLATE.match(line_text)
             if indent_match is not None:

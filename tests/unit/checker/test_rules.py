@@ -216,6 +216,38 @@ class TestLines(object):
         ] == checker.issues
 
 
+class TestEmptyLines(object):
+    """
+    WSC008: More than 2 empty lines
+    """
+    @pytest.mark.parametrize('text', [
+        'cherry\napple\n',
+        'cherry\n\napple\n',
+        'cherry\n\n\napple\n',
+    ])
+    def test_valid_amount_of_empty_lines(self, checker, text):
+        checker.check_text(text)
+        assert [] == checker.issues
+
+    def test_3_empty_lines(self, checker):
+        checker.check_text('cherry\n\n\n\napple\n')
+        assert [
+            {
+                'rule': 'WSC008', 'path': '<string>', 'line': 1, 'col': 7,
+                'context': '', 'message_suffix': '(+1)'
+            },
+        ] == checker.issues
+
+    def test_5_empty_lines(self, checker):
+        checker.check_text('cherry\n\n\n\n\n\napple\n')
+        assert [
+            {
+                'rule': 'WSC008', 'path': '<string>', 'line': 1, 'col': 7,
+                'context': '', 'message_suffix': '(+3)'
+            },
+        ] == checker.issues
+
+
 class TestComplexCases(object):
     def test_multiple_issues(self, checker):
         checker.check_text('\n\n \tpineapple \rbanana')
