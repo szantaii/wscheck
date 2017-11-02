@@ -3,10 +3,14 @@
 .. include:: ../README.rst
 
 
+Topics
+======
+
 .. toctree::
-    :hidden:
+    :maxdepth: 2
 
     rules/index
+    contributing/index
 
 
 Indices and tables
