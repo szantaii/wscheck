@@ -9,7 +9,9 @@ WSCheck
 Installation
 ------------
 
-``pip install wscheck``
+.. code-block:: bash
+
+    $ pip install wscheck
 
 
 Usage
