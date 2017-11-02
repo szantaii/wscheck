@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Fixed
+- Removed unnecessary test files from the released package
 
 
 ## [1.1.0] - 2017-11-02

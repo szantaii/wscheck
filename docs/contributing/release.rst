@@ -18,6 +18,14 @@ Checklist for release a new version
 
     #. wait for the results of CI
 
+#. Check the package building
+
+    a. Remove up the ``build`` directory
+
+    #. Build a package with ``setup.py build``
+
+    #. Check the package contains in the new ``build`` directory
+
 #. If all tests are green, lets merge
 
     a. Merge ``devel`` branch with  ``--no-ff``
@@ -28,6 +36,8 @@ Checklist for release a new version
 
 #. Publish
 
-    a. Build and upload package to pypi with ``setup.py release``
+    a. Check do you are on the tagged patch
+
+    #. Build and upload package to pypi with ``setup.py release``
 
     #. Update tag description on GitHub

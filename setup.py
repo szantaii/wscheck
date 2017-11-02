@@ -53,7 +53,7 @@ setup(
     install_requires=read('requirements.txt').splitlines(),
     tests_require=read('requirements-dev.txt').splitlines(),
 
-    packages=find_packages(exclude=['tests']),
+    packages=find_packages(exclude=['tests', 'tests.*']),
     cmdclass={
         'test': PyTest
     },
