@@ -70,12 +70,12 @@ Example
                                                 ^-- WSC001: Bad line ending '\r\n'
 
     In examples/multiple_problems.py line 16:
-    --->--->os.makedirs(self.__print_cache_dir, exist_ok=True)
+    --->--->os.makedirs(self.__cache_dir, exist_ok=True)
     ^-- WSC004: Indentation with non-space character
 
     In examples/multiple_problems.py line 22:
-            return os.path.join(self.__print_cache_dir, pdf_name)
-                                                                 ^-- WSC006: Too many newline at end of file (+1)
+            return os.path.join(self.__cache_dir, pdf_name)
+                                                           ^-- WSC006: Too many newline at end of file (+1)
 
 
 Bugs
