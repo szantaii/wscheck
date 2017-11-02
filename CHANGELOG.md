@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+
+
+## [1.1.1] - 2017-11-02
 ### Fixed
 - Removed unnecessary test files from the released package
 
@@ -82,7 +85,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
   [WSW005][WSC005], [WSW006][WSC006] rules)
 
 
-[unreleased]: https://github.com/andras-tim/wscheck/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/andras-tim/wscheck/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/andras-tim/wscheck/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/andras-tim/wscheck/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/andras-tim/wscheck/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/andras-tim/wscheck/compare/v0.1.6...v1.0.0
