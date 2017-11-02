@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added small detail and example to pages of rules.
 
 ### Changed
-- Restructured test files
+- Improved documentation
 
 ### Fixed
 - Fixed the HTML generation error of readme on GitHub and PyPi
