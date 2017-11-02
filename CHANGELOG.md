@@ -8,6 +8,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Added rule for checking empty lines at the beginning of the files ([WSC007])
 - Added PyPy support
 - Added performance measurement tests
+- Added small detail and example to pages of rules.
+
 ### Changed
 - Restructured test files
 

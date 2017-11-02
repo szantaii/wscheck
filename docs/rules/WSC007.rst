@@ -1,4 +1,14 @@
 WSC007: File begins with newline
 ================================
 
-Check empty lines before the first non empty line.
+Check empty lines before the first non-empty line.
+
+
+Example
+-------
+
+.. test-wsc:: examples/WSC007_new_line_at_bof.py
+
+    In <PATH> line 2:
+    class LabelPrinter:
+    ^-- WSC007: File begins with newline

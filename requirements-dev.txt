@@ -1,3 +1,4 @@
+docutils>=0.14
 formencode>=1.3.1
 mock>=2.0.0
 pytest>=3.2.3

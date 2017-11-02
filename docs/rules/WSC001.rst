@@ -1,2 +1,18 @@
 WSC001: Bad line ending
 =======================
+
+This rule enforces Linux style (``\n``) line ending, and alerting for Windows (``\r\n``) and Osx (``\r``) style.
+
+
+Example
+-------
+
+.. test-wsc:: examples/WSC001_bad_eol.py
+
+    In <PATH> line 3:
+            pdf_generator = _LabelPdfGenerator()
+                                                ^-- WSC001: Bad line ending '\r\n'
+
+    In <PATH> line 5:
+                self.__title, self.__data, self.__logo_path, config.App.LABEL_BORDER,
+                                                                                     ^-- WSC001: Bad line ending '\r'
