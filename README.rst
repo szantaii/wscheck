@@ -9,7 +9,9 @@ WSCheck
 Installation
 ------------
 
-``pip install wscheck``
+.. code-block:: bash
+
+    $ pip install wscheck
 
 
 Usage
@@ -73,7 +75,7 @@ Example
 
     In examples/multiple_problems.py line 22:
             return os.path.join(self.__print_cache_dir, pdf_name)
-                                                             ^-- WSC006: Too many newline at end of file (+1)
+                                                                 ^-- WSC006: Too many newline at end of file (+1)
 
 
 Bugs

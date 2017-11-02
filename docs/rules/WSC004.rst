@@ -1,5 +1,14 @@
-WSC004
-======
+WSC004: Indentation with non-space character
+============================================
 
-Indentation with non-space character
-------------------------------------
+This rule enforces the space indentation (whitespaces before the line can be spaces only).
+
+
+Example
+-------
+
+.. test-wsc:: examples/WSC004_tab_indentation.py
+
+    In <PATH> line 3:
+    --->--->os.makedirs(self.__print_cache_dir, exist_ok=True)
+    ^-- WSC004: Indentation with non-space character

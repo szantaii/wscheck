@@ -1,7 +1,14 @@
-WSC006
-======
+WSC006: Too many newlines at the end of file
+============================================
 
-Too many newline at end of file
--------------------------------
+This rule enforces one ``\n`` at end of file.
 
-Counting empty lines after the last non-empty line, and alerts if it is more than one.
+
+Example
+-------
+
+.. test-wsc:: examples/WSC006_too_many_new_lines_at_eof.py
+
+    In <PATH> line 6:
+            return os.path.join(self.__print_cache_dir, pdf_name)
+                                                                 ^-- WSC006: Too many newline at end of file (+1)

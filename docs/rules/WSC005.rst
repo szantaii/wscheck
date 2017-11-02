@@ -1,5 +1,14 @@
-WSC005
-======
+WSC005: No newline at end of file
+=================================
 
-No newline at end of file
--------------------------
+This rule enforces one ``\n`` at end of file.
+
+
+Example
+-------
+
+.. test-wsc:: examples/WSC005_no_new_line_at_eof.py
+
+    In <PATH> line 6:
+            printer.print_pdf(self.__pdf_path, options={'copies': str(copies)})
+                                                                               ^-- WSC005: No newline at end of file

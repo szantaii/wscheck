@@ -1,5 +1,14 @@
-WSC003
-======
+WSC003: Indentation is not multiple of 2
+========================================
 
-Indentation is not multiple of 2
---------------------------------
+This rule alerting for indentation (whitespaces before the line) must be multiple of 2 spaces (or zero).
+
+
+Example
+-------
+
+.. test-wsc:: examples/WSC003_bad_indentation.py
+
+    In <PATH> line 2:
+       def __generate_pdf(self):
+       ^-- WSC003: Indentation is not multiple of 2

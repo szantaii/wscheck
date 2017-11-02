@@ -1,5 +1,18 @@
-WSC002
-======
+WSC002: Tailing whitespace
+==========================
 
-Tailing whitespace
-------------------
+Alerting for left spaces, tabulators at end of lines.
+
+
+Example
+-------
+
+.. test-wsc:: examples/WSC002_tailing_ws.py
+
+    In <PATH> line 3:
+            printer = printer or Printer(config.App.LABEL_PRINTER)
+                                                                  ^-- WSC002: Tailing whitespace
+
+    In <PATH> line 5:
+            self.print_to_pdf()
+                               ^-- WSC002: Tailing whitespace
