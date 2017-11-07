@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Added
+- Added `--quick-benchmark` for Travis can check assertions of performance tests too
 
 
 ## [1.1.2] - 2018-10-18

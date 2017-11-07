@@ -87,6 +87,12 @@ Bugs or suggestions? Visit the `issue tracker <https://github.com/andras-tim/wsc
 Benchmark
 ---------
 
+* You can run a quick benchmark:
+
+    .. code-block:: bash
+
+        tox -- tests/performance --quick-benchmark
+
 * You can run benchmarks and generate histogram for compare calls to each other:
 
     .. code-block:: bash

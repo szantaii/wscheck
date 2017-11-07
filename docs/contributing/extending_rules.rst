@@ -20,6 +20,8 @@ Checklist
 
     #. Extend the complex case too.
 
+    #. Run all performance tests for check performance degradation!
+
 #. Extend documentation
 
     a. Create ``docs/rules/WSC000.rst`` file for describing the rule.

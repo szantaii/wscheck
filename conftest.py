@@ -12,6 +12,7 @@ def pytest_addoption(parser):
     """
     parser.addini('benchmark_storage', 'Specify a different path to store the runs', type='pathlist')
     parser.addini('benchmark_histogram', 'Plot graphs of min/max/avg/stddev over time', type='pathlist')
+    parser.addoption('--quick-benchmark', action='store_true', help='Run performance check with reduced iteration')
 
 
 def pytest_cmdline_main(config):
@@ -27,6 +28,9 @@ def pytest_cmdline_main(config):
         histogram_paths = config.getini('benchmark_histogram')
         if histogram_paths:
             config.option.benchmark_histogram = histogram_paths
+
+    if config.getoption('quick_benchmark'):
+        config.option.benchmark_max_time = '0.01'
 
 
 def pytest_itemcollected(item):

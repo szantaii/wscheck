@@ -4,12 +4,17 @@ This test suite wants to cover a massive file validator scenario.
 The `check_text()` will be called for fast results and simple test cases
 """
 
+import pytest
 from tests import parametrize_with_names
 from wscheck.checker import WhitespaceChecker
 
 
 CHECK_COUNT = 1000
 LINES_PER_TEXT = 100
+if pytest.config.getoption('quick_benchmark'):
+    CHECK_COUNT = 1
+    LINES_PER_TEXT = 1
+
 DEFAULT_LINE = 'lorem \tipsum' * 5  # 60 chars
 DEFAULT_EOL = '\n'
 
@@ -148,8 +153,8 @@ def test_wsc005(benchmark, text, expected_rules, expected_issue_count):
 
 
 @parametrize_with_names('text,expected_rules,expected_issue_count', {
-    '1-lf':     [_text(_line(), foot=DEFAULT_EOL),      ['WSC006'], CHECK_COUNT],  # noqa: E241,E501
-    '15-lf':    [_text(_line(), foot=DEFAULT_EOL * 15), ['WSC006'], CHECK_COUNT],  # noqa: E241,E501
+    '1-lf':     [_text(foot=DEFAULT_EOL),      ['WSC006'], CHECK_COUNT],  # noqa: E241,E501
+    '15-lf':    [_text(foot=DEFAULT_EOL * 15), ['WSC006'], CHECK_COUNT],  # noqa: E241,E501
 })
 def test_wsc006(benchmark, text, expected_rules, expected_issue_count):
     """
@@ -159,7 +164,8 @@ def test_wsc006(benchmark, text, expected_rules, expected_issue_count):
 
 
 @parametrize_with_names('text,expected_rules,expected_issue_count', {
-    '':    [_text(head=_line(prefix=DEFAULT_EOL)),  ['WSC007'], CHECK_COUNT],  # noqa: E241,E501
+    '1-lf':     [_text(head=DEFAULT_EOL),      ['WSC007'], CHECK_COUNT],  # noqa: E241,E501
+    '15-lf':    [_text(head=DEFAULT_EOL * 15), ['WSC007'], CHECK_COUNT],  # noqa: E241,E501
 })
 def test_wsc007(benchmark, text, expected_rules, expected_issue_count):
     """
