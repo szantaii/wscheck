@@ -13,10 +13,7 @@ matrix:
 before_cache:
   - rm -f $HOME/.cache/pip/log/debug.log
 
-cache:
-  - pip
-  - directories:
-    - $HOME/.cache/pip
+cache: pip
 
 before_install:
   - pip install --upgrade pip setuptools wheel coveralls codacy-coverage

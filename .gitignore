@@ -92,3 +92,5 @@ ENV/
 
 # Performance measurements
 .benchmark/
+
+.pytest_cache/

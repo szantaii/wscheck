@@ -10,20 +10,17 @@ from wscheck.version import Version
 
 class PyTest(TestCommand):
     user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
-    test_args = None
-    test_suite = None
 
     def initialize_options(self):
         TestCommand.initialize_options(self)
         self.pytest_args = ''
-        self.test_args = []
-        self.test_suite = True
 
     def run_tests(self):
         import shlex
         import pytest
-        exit_code = pytest.main(shlex.split(self.pytest_args))
-        sys.exit(exit_code)
+
+        errno = pytest.main(shlex.split(self.pytest_args))
+        sys.exit(errno)
 
 
 def read(*path):

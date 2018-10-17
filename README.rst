@@ -117,8 +117,8 @@ Benchmark
 .. |Build| image:: https://travis-ci.org/andras-tim/wscheck.svg?branch=master
     :target: https://travis-ci.org/andras-tim/wscheck/branches
     :alt: Build Status
-.. |DependencyStatus| image:: https://gemnasium.com/andras-tim/wscheck.svg
-    :target: https://gemnasium.com/andras-tim/wscheck
+.. |DependencyStatus| image:: https://requires.io/github/andras-tim/wscheck/requirements.svg?branch=master
+    :target: https://requires.io/github/andras-tim/wscheck/requirements/?branch=master
     :alt: Dependency Status
 .. |PyPi| image:: https://img.shields.io/badge/download-PyPi-green.svg
     :target: https://pypi.org/project/wscheck/
