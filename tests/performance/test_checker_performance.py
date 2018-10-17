@@ -159,7 +159,7 @@ def test_wsc006(benchmark, text, expected_rules, expected_issue_count):
 
 
 @parametrize_with_names('text,expected_rules,expected_issue_count', {
-    '':    [_text(head=_line(eol='')),  ['WSC007'], CHECK_COUNT],  # noqa: E241,E501
+    '':    [_text(head=_line(prefix=DEFAULT_EOL)),  ['WSC007'], CHECK_COUNT],  # noqa: E241,E501
 })
 def test_wsc007(benchmark, text, expected_rules, expected_issue_count):
     """

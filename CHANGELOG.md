@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Updated development dependencies
 
+### Fixed
+- Fixed performance test of [WSC007] rule
+
 
 ## [1.1.1] - 2017-11-02
 ### Fixed
