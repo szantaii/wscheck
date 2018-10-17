@@ -5,6 +5,10 @@ os:
 python:
   - 2.7
   - pypy
+matrix:
+  fast_finish: true
+  allow_failures:
+    - python: pypy
 
 before_cache:
   - rm -f $HOME/.cache/pip/log/debug.log
