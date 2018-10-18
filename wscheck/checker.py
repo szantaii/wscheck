@@ -50,8 +50,8 @@ class WhitespaceChecker(object):
         """
         :type file_path: str
         """
-        with open(file_path) as fd:
-            file_content = fd.read()
+        with open(file_path, 'rb') as fd:
+            file_content = fd.read().decode('utf-8')
 
         self.check_text(file_content, source_path=file_path)
 

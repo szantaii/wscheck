@@ -18,7 +18,12 @@ def patch_open_read(files):
         assert path in files, 'try to open a non-mocked path\n    desired={desired!r}\n    mocked={mocked!r}'.format(
             desired=path, mocked=files.keys())
 
-        open_mock = mock.mock_open(read_data=files[path])
+        file_data_str = files[path]
+        if args and 'b' in args[0]:
+            open_mock = mock.mock_open(read_data=file_data_str.encode('utf-8'))
+        else:
+            open_mock = mock.mock_open(read_data=file_data_str)
+
         return open_mock(path, *args, **kwargs)
 
     return mock.patch(__get_open_ref(), mock_open_wrapper)
