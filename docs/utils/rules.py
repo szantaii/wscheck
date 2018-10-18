@@ -26,7 +26,7 @@ class TestWscDirective(Directive):
     import os
     from wscheck.__main__ import main
     os.chdir('{escaped_base_dir}')
-    main('{escaped_relative_file_path}')
+    main(['{escaped_relative_file_path}'])
 
 **Command:**
 
