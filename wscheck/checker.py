@@ -88,7 +88,7 @@ class WhitespaceChecker(object):
             if 'WSC001' in self._rules:
                 if not line_eol == '' and not line_eol == '\n':
                     self._add_issue(rule='WSC001', path=source_path, line=line, col=len(line_text) + 1,
-                                    context=line_text, message_suffix='{!r}'.format(line_eol))
+                                    context=line_text, message_suffix='{!r}'.format(str(line_eol)))
 
             if 'WSC002' in self._rules:
                 tailing_whitespace_match = self._TAILING_WHITESPACE_TEMPLATE.search(line_text)
