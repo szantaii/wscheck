@@ -1,7 +1,7 @@
 from collections import OrderedDict
 from lxml import builder, etree
 
-from checker import RULES
+from wscheck.checker import RULES
 
 BUILD = builder.ElementMaker()
 

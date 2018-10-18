@@ -82,8 +82,8 @@ def assert_equal_xml(generated_xml, expected_xml):
         """
         differences.append(' * {}'.format(message))
 
-    generated_root_element = etree.fromstring(generated_xml)
-    expected_root_element = etree.fromstring(expected_xml)
+    generated_root_element = etree.fromstring(generated_xml.encode('utf-8'))
+    expected_root_element = etree.fromstring(expected_xml.encode('utf-8'))
 
     xml_compare(expected_root_element, generated_root_element, reporter=append_to_messages)
     if differences:
