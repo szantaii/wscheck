@@ -20,6 +20,10 @@ def main(args=None):
 
     parsed_args = _parse_args(args)
 
+    if parsed_args.show_version:
+        print(Version().release)
+        return 0
+
     if parsed_args.list_rules:
         _list_rules()
         return 0
@@ -55,9 +59,10 @@ def _parse_args(args):
             raise argparse.ArgumentTypeError('Unknown rule')
         return rule_name
 
-    parser = argparse.ArgumentParser(prog='wscheck', description=__doc__, version=Version().release,
-                                     formatter_class=WideHelpFormatter)
+    parser = argparse.ArgumentParser(prog='wscheck', description=__doc__, formatter_class=WideHelpFormatter)
 
+    parser.add_argument('-v', '--version', dest='show_version', action='store_true',
+                        help='show program\'s version number and exit')
     parser.add_argument('paths', type=str, nargs='*',
                         help='Path of files for test')
     parser.add_argument('-l', '--list-rules', dest='list_rules', action='store_true',
@@ -70,7 +75,7 @@ def _parse_args(args):
 
     parsed_args = parser.parse_args(args)
 
-    if not parsed_args.list_rules and not parsed_args.paths:
+    if not parsed_args.show_version and not parsed_args.list_rules and not parsed_args.paths:
         parser.error('Missing file paths')
 
     return parsed_args
