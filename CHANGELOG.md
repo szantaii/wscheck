@@ -6,6 +6,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased][unreleased]
 ### Changed
 - Updated development dependencies
+- More understandable error message when path was not specified
+
+### Fixed
+- Fixed performance test of [WSC007] rule
+- Fixed "wscheck: error: paths" error
 
 
 ## [1.1.1] - 2017-11-02

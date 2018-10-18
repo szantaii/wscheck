@@ -11,10 +11,13 @@ from printer import ErrorPrinter
 from version import Version
 
 
-def main(*args):
+def main(args=None):
     """
-    :type args: str
+    :type args: list[str]
     """
+    if args is None:
+        args = sys.argv[1:]
+
     parsed_args = _parse_args(args)
 
     if parsed_args.list_rules:
@@ -68,7 +71,7 @@ def _parse_args(args):
     parsed_args = parser.parse_args(args)
 
     if not parsed_args.list_rules and not parsed_args.paths:
-        parser.error('paths')
+        parser.error('Missing file paths')
 
     return parsed_args
 
@@ -83,4 +86,4 @@ class WideHelpFormatter(argparse.RawDescriptionHelpFormatter):
 
 
 if __name__ == '__main__':
-    sys.exit(main(*sys.argv[1:]))
+    sys.exit(main())
