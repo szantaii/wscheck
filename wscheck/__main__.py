@@ -6,9 +6,9 @@ import argparse
 import os
 import sys
 
-from checker import WhitespaceChecker, RULES
-from printer import ErrorPrinter
-from version import Version
+from wscheck.checker import WhitespaceChecker, RULES
+from wscheck.printer import ErrorPrinter
+from wscheck.version import Version
 
 
 def main(args=None):
