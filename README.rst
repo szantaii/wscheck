@@ -130,7 +130,7 @@ Benchmark
     :target: https://github.com/andras-tim/wscheck/blob/master/LICENSE
     :alt: License
 
-.. |CodeQuality| image:: https://www.codacy.com/project/badge/448b73826c97497d8bf0e2970cba1156
+.. |CodeQuality| image:: https://api.codacy.com/project/badge/Grade/448b73826c97497d8bf0e2970cba1156
     :target: https://www.codacy.com/app/andras-tim/wscheck
     :alt: Code Quality
 .. |Coverage| image:: https://coveralls.io/repos/andras-tim/wscheck/badge.svg?branch=master&service=github
