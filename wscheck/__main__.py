@@ -33,7 +33,7 @@ def main(args=None):
         checker.check_file(file_path)
 
     printer = ErrorPrinter(parsed_args.paths, checker.issues)
-    printer.print_to_tty()
+    printer.print_to_tty(parsed_args.color)
     if parsed_args.output_checkstyle:
         printer.write_checkstyle(parsed_args.output_checkstyle)
 
@@ -72,6 +72,8 @@ def _parse_args(args):
                         help='Exclude rule(s)')
     parser.add_argument('--checkstyle', dest='output_checkstyle', type=str,
                         help='Path of checkstyle output')
+    parser.add_argument('--color', dest='color', action='store_true',
+                        help='Show colored output')
 
     parsed_args = parser.parse_args(args)
 

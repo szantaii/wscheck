@@ -61,7 +61,33 @@ def test_print_to_tty(capfd, printer):
         ''
     ])
 
-    printer.print_to_tty()
+    printer.print_to_tty(False)
+    out, err = capfd.readouterr()
+    assert '' == err
+    assert expected_stdout == out
+
+
+def test_colored_print_to_tty(capfd, printer):
+    bold = '\033[1m'
+    yellow = '\033[33m'
+    reset = '\033[0m'
+
+    expected_stdout = '\n'.join([
+        bold + 'In /bad_file line 10:' + reset,
+        'foo',
+        '   ' + yellow + '^-- WSC001: Bad line ending \'\\r\\n\'' + reset,
+        '',
+        bold + 'In /bad_file line 187:' + reset,
+        'exit 0',
+        '      ' + yellow + '^-- WSC005: No newline at end of file' + reset,
+        '',
+        bold + 'In /bad_file line 188:' + reset,
+        'echo \'foo--->bar\'  ',
+        '                   ' + yellow + '^-- WSC002: Tailing whitespace' + reset,
+        ''
+    ])
+
+    printer.print_to_tty(True)
     out, err = capfd.readouterr()
     assert '' == err
     assert expected_stdout == out

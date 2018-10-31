@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from lxml import builder, etree
+from termcolor import colored
 
 from wscheck.checker import RULES
 
@@ -15,7 +16,10 @@ class ErrorPrinter(object):
         self._files = sorted(files)
         self._issues = sorted(issues, key=lambda issue: (issue['path'], issue['line'], issue['col']))
 
-    def print_to_tty(self):
+    def print_to_tty(self, colored_output):
+        """
+        :type colored_output: bool
+        """
         glue_text = ''
 
         for issue in self._issues:
@@ -35,13 +39,22 @@ class ErrorPrinter(object):
 
                 index += 4
 
-            print('{glue}In {path} line {row}:\n{context}\n{message_indent}^-- {message}'.format(
-                glue=glue_text,
+            position = 'In {path} line {row}:'.format(
                 path=issue['path'],
-                row=issue['line'],
+                row=issue['line']
+            )
+            message = '^-- {}: {}'.format(issue['rule'], message)
+
+            if colored_output:
+                position = colored(position, attrs=['bold'])
+                message = colored(message, color='yellow')
+
+            print('{glue}{position}\n{context}\n{message_indent}{message}'.format(
+                glue=glue_text,
+                position=position,
                 context=context,
                 message_indent=' ' * message_indent,
-                message='{}: {}'.format(issue['rule'], message)
+                message=message
             ))
 
             glue_text = '\n'
