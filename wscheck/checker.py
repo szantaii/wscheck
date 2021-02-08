@@ -54,7 +54,7 @@ class WhitespaceChecker(object):
             with open(file_path, 'rb') as fd:
                 file_content = fd.read().decode('utf-8')
         except Exception as e:
-            ValueError('Can not read file, maybe not a text file {!r}; error={!r}'.format(file_path, e))
+            raise ValueError('Can not read file, maybe not a text file {!r}; error={}'.format(file_path, e))
 
         self.check_text(file_content, source_path=file_path)
 
