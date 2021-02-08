@@ -30,7 +30,7 @@ Checklist
 
     #. Extend ``examples/multiple_problems.py`` file with a typical wrong line for demonstrate.
 
-    #. Refresh the output in ``README.rst`` too.
+    #. Refresh the output in ``README.md`` and ``index.rst` too.
 
 #. Update changelog
 

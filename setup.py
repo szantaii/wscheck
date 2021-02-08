@@ -37,7 +37,8 @@ setup(
     author_email='andras.tim@gmail.com',
     platforms='any',
     description='Whitespace checking tool',
-    long_description=read('README.rst'),
+    long_description_content_type='text/markdown',
+    long_description=read('README.md'),
 
     classifiers=[
         "Development Status :: 5 - Production/Stable",
