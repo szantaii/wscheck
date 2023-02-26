@@ -5,16 +5,14 @@
 import argparse
 import os
 import sys
+from typing import List, Optional
 
 from wscheck.checker import WhitespaceChecker, RULES
 from wscheck.printer import ErrorPrinter
 from wscheck.version import Version
 
 
-def main(args=None):
-    """
-    :type args: list[str]
-    """
+def main(args: Optional[List] = None):
     if args is None:
         args = sys.argv[1:]
 
@@ -43,18 +41,15 @@ def main(args=None):
     return 0
 
 
-def _list_rules():
+def _list_rules() -> None:
     row_template = '{:<6s} {}'
     print(row_template.format('[RULE]', '[MESSAGE]'))
     for rule, message in RULES.items():
         print(row_template.format(rule, message))
 
 
-def _parse_args(args):
-    """
-    :type args: tuple[str]
-    """
-    def rule(rule_name):
+def _parse_args(args: List[str]) -> argparse.Namespace:
+    def rule(rule_name: str) -> str:
         if rule_name not in RULES:
             raise argparse.ArgumentTypeError('Unknown rule')
         return rule_name
@@ -84,7 +79,7 @@ def _parse_args(args):
 
 
 class WideHelpFormatter(argparse.RawDescriptionHelpFormatter):
-    def __init__(self, prog, *args, **kwargs):
+    def __init__(self, prog: str, *args, **kwargs) -> None:
         indent_increment = 2
         max_help_position = 40
         width = int(os.getenv("COLUMNS", 120)) - 2
