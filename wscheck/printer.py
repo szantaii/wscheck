@@ -1,25 +1,19 @@
 from collections import OrderedDict
 from lxml import builder, etree
 from termcolor import colored
+from typing import Dict, List, Mapping
 
 from wscheck.checker import RULES
 
 BUILD = builder.ElementMaker()
 
 
-class ErrorPrinter(object):
-    def __init__(self, files, issues):
-        """
-        :type files: list
-        :type issues: list
-        """
+class ErrorPrinter:
+    def __init__(self, files: List[str], issues: List[Dict]) -> None:
         self._files = sorted(files)
         self._issues = sorted(issues, key=lambda issue: (issue['path'], issue['line'], issue['col']))
 
-    def print_to_tty(self, colored_output):
-        """
-        :type colored_output: bool
-        """
+    def print_to_tty(self, colored_output: bool) -> None:
         glue_text = ''
 
         for issue in self._issues:
@@ -59,20 +53,14 @@ class ErrorPrinter(object):
 
             glue_text = '\n'
 
-    def _get_message(self, issue):
-        """
-        :type issue: dict
-        :rtype: str
-        """
+    @staticmethod
+    def _get_message(issue: Mapping[str, str]) -> str:
         message = RULES[issue['rule']]
         if issue['message_suffix']:
             message = '{} {}'.format(message, issue['message_suffix'])
         return message
 
-    def write_checkstyle(self, file_path):
-        """
-        :type file_path: str
-        """
+    def write_checkstyle(self, file_path: str) -> None:
         file_elements = OrderedDict(
             (path, BUILD.file(name=path))
             for path in sorted(self._files, key=lambda path: path.lower())
