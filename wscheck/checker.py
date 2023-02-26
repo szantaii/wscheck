@@ -1,4 +1,5 @@
 import re
+from typing import Dict, List, Optional, Tuple, Union
 
 RULES = {
     'WSC001': 'Bad line ending',
@@ -17,10 +18,7 @@ class WhitespaceChecker:
     _LINE_INDENT_TEMPLATE = re.compile(r'^\s+')
     _NOT_SPACES_TEMPLATE = re.compile(r'[^ ]')
 
-    def __init__(self, excluded_rules=None):
-        """
-        :type excluded_rules: list or None
-        """
+    def __init__(self, excluded_rules: Optional[List] = None) -> None:
         excluded_rules = excluded_rules or []
 
         self._rules = {
@@ -37,19 +35,13 @@ class WhitespaceChecker:
             self._check_bof,
         ]
 
-        self._issues = []
+        self._issues : List[Dict[str, Union[int, Optional[str]]]] = []
 
     @property
-    def issues(self):
-        """
-        :rtype: list
-        """
+    def issues(self) -> List[Dict]:
         return self._issues
 
-    def check_file(self, file_path):
-        """
-        :type file_path: str
-        """
+    def check_file(self, file_path: str) -> None:
         try:
             with open(file_path, 'rb') as fd:
                 file_content = fd.read().decode('utf-8')
@@ -58,20 +50,12 @@ class WhitespaceChecker:
 
         self.check_text(file_content, source_path=file_path)
 
-    def check_text(self, text, source_path='<string>'):
-        """
-        :type text: str
-        :type source_path: str
-        """
+    def check_text(self, text: str, source_path: str = '<string>') -> None:
         lines = self._read_text_lines_w_eol(text)
         for checker in self._checkers:
             checker(source_path, lines)
 
-    def _read_text_lines_w_eol(self, text):
-        """
-        :type text: str
-        :rtype: list
-        """
+    def _read_text_lines_w_eol(self, text: str) -> List[Tuple]:
         lines = self._LINE_TEMPLATE.findall(text)
 
         # Workaround: can not match end of string in multi line regexp
@@ -80,11 +64,7 @@ class WhitespaceChecker:
 
         return lines
 
-    def _check_by_lines(self, source_path, lines):
-        """
-        :type source_path: str
-        :type lines: list
-        """
+    def _check_by_lines(self, source_path: str, lines: List[Tuple]) -> None:
         for line, line_text_eol in enumerate(lines, start=1):
             line_text, line_eol = line_text_eol
 
@@ -117,23 +97,19 @@ class WhitespaceChecker:
                         self._add_issue(rule='WSC004', path=source_path, line=line, col=character_match.start() + 1,
                                         context=line_text)
 
-    def _add_issue(self, rule, path, line, col, context, message_suffix=None):
-        """
-        :type rule: str
-        :type path: str
-        :type line: int
-        :type col: int
-        :type context: str
-        :type message_suffix: str or None
-        """
+    def _add_issue(
+        self,
+        rule: str,
+        path: str,
+        line: int,
+        col: int,
+        context: str,
+        message_suffix: Optional[str] = None
+    ) -> None:
         self._issues.append({'rule': rule, 'path': path, 'line': line, 'col': col, 'context': context,
                             'message_suffix': message_suffix})
 
-    def _check_bof(self, source_path, lines):
-        """
-        :type source_path: str
-        :type lines: list
-        """
+    def _check_bof(self, source_path: str, lines: List[Tuple]) -> None:
         empty_lines = 0
         for line_text, _ in tuple(lines):
             if not line_text == '':
@@ -149,11 +125,7 @@ class WhitespaceChecker:
                 line_text = lines[empty_lines][0]
                 self._add_issue(rule='WSC007', path=source_path, line=empty_lines + 1, col=1, context=line_text)
 
-    def _check_eof(self, source_path, lines):
-        """
-        :type source_path: str
-        :type lines: list
-        """
+    def _check_eof(self, source_path: str, lines: List[Tuple]) -> None:
         if lines == [('', '')]:
             return
 
