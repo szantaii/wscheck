@@ -11,7 +11,7 @@ RULES = {
 }
 
 
-class WhitespaceChecker(object):
+class WhitespaceChecker:
     _LINE_TEMPLATE = re.compile(r'([^\n\r]*)(\r\n|\r|\n|)', re.MULTILINE)
     _TAILING_WHITESPACE_TEMPLATE = re.compile(r'\s+$')
     _LINE_INDENT_TEMPLATE = re.compile(r'^\s+')
