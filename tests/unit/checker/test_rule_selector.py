@@ -3,7 +3,7 @@ import pytest
 from wscheck.checker import WhitespaceChecker, RULES
 
 
-class TestExcludingRules(object):
+class TestExcludingRules:
     def test_add_one_exclusion_for_one_issue_type(self):
         checker = WhitespaceChecker(excluded_rules=['WSC001'])
         checker.check_text('apple\r')
