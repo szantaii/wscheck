@@ -6,4 +6,4 @@ __BUILD_DIR = os.path.join(__SOURCE_DIR, '_build')
 
 
 def test_doctest():
-    assert sphinx.make_main([__file__, '-M', 'doctest', __SOURCE_DIR, __BUILD_DIR]) == 0
+    assert sphinx.cmd.build.make_main([__file__, '-M', 'doctest', __SOURCE_DIR, __BUILD_DIR]) == 0
