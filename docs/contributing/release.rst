@@ -8,7 +8,7 @@ Checklist for release a new version
 
     a. Move all notes from **Unreleased** section to a new one with version and date.
 
-    #. Copy and update(!) the diff link for the specified version and the **Unreleaed** too.
+    #. Copy and update(!) the diff link for the specified version and the **Unreleased** too.
 
 #. Update version in ``wscheck/version.py`` file
 
