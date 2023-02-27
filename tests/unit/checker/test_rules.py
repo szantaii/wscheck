@@ -4,7 +4,7 @@ from wscheck.checker import WhitespaceChecker
 
 
 @pytest.fixture
-def checker():
+def checker() -> WhitespaceChecker:
     return WhitespaceChecker()
 
 
@@ -14,11 +14,11 @@ class TestEof:
     WSC006: Too many newline at end of file
     """
 
-    def test_one_empty_line_is_good(self, checker):
+    def test_one_empty_line_is_good(self, checker: WhitespaceChecker) -> None:
         checker.check_text('')
         assert [] == checker.issues
 
-    def test_two_empty_lines_is_bad(self, checker):
+    def test_two_empty_lines_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('\n')
         assert [
             {
@@ -27,7 +27,7 @@ class TestEof:
             },
         ] == checker.issues
 
-    def test_three_empty_lines_is_bad(self, checker):
+    def test_three_empty_lines_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('\n\n')
         assert [
             {
@@ -36,7 +36,7 @@ class TestEof:
             },
         ] == checker.issues
 
-    def test_one_non_empty_line_wo_lf_is_bad(self, checker):
+    def test_one_non_empty_line_wo_lf_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('apple')
         assert [
             {
@@ -45,11 +45,11 @@ class TestEof:
             },
         ] == checker.issues
 
-    def test_one_empty_lines_at_end_is_good(self, checker):
+    def test_one_empty_lines_at_end_is_good(self, checker: WhitespaceChecker) -> None:
         checker.check_text('apple\n')
         assert [] == checker.issues
 
-    def test_two_empty_lines_at_end_is_bad(self, checker):
+    def test_two_empty_lines_at_end_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('apple\n\n')
         assert [
             {
@@ -58,7 +58,7 @@ class TestEof:
             },
         ] == checker.issues
 
-    def test_three_empty_lines_at_end_is_bad(self, checker):
+    def test_three_empty_lines_at_end_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('apple\n\n\n')
         assert [
             {
@@ -67,7 +67,7 @@ class TestEof:
             },
         ] == checker.issues
 
-    def test_two_non_empty_lines_but_missing_lf_after_last_is_bad(self, checker):
+    def test_two_non_empty_lines_but_missing_lf_after_last_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('apple\norange')
         assert [
             {
@@ -82,7 +82,7 @@ class TestBof:
     WSC007: File begins with newline
     """
 
-    def test_one_empty_line_before_non_empty_lines_is_bad(self, checker):
+    def test_one_empty_line_before_non_empty_lines_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('\napple\n')
         assert [
             {
@@ -91,7 +91,7 @@ class TestBof:
             },
         ] == checker.issues
 
-    def test_two_empty_line_before_non_empty_lines_is_bad(self, checker):
+    def test_two_empty_line_before_non_empty_lines_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('\n\napple\n')
         assert [
             {
@@ -100,7 +100,7 @@ class TestBof:
             },
         ] == checker.issues
 
-    def test_three_empty_line_before_non_empty_lines_is_bad(self, checker):
+    def test_three_empty_line_before_non_empty_lines_is_bad(self, checker: WhitespaceChecker) -> None:
         checker.check_text('\n\n\napple\n')
         assert [
             {
@@ -118,11 +118,11 @@ class TestLines:
     WSC004: Indentation with non-space character
     """
 
-    def test_lf_is_good_eol(self, checker):
+    def test_lf_is_good_eol(self, checker: WhitespaceChecker) -> None:
         checker.check_text('orange\nbanana\n')
         assert [] == checker.issues
 
-    def test_cr_is_bad_eol(self, checker):
+    def test_cr_is_bad_eol(self, checker: WhitespaceChecker) -> None:
         checker.check_text('apple\rorange\r')
         assert [
             {
@@ -135,7 +135,7 @@ class TestLines:
             },
         ] == checker.issues
 
-    def test_crlf_is_bad_eol(self, checker):
+    def test_crlf_is_bad_eol(self, checker: WhitespaceChecker) -> None:
         checker.check_text('apple\r\norange\r\n')
         assert [
             {
@@ -155,7 +155,7 @@ class TestLines:
         'apple\t\tbanana',
         'apple \t banana',
     ])
-    def test_infix_whitespace_is_ok(self, checker, content):
+    def test_infix_whitespace_is_ok(self, checker: WhitespaceChecker, content: str) -> None:
         checker.check_text('{}\n'.format(content))
         assert [] == checker.issues
 
@@ -166,7 +166,7 @@ class TestLines:
         'kiwi\t\t',
         'kiwi \t ',
     ])
-    def test_suffix_space_is_bad(self, checker, content):
+    def test_suffix_space_is_bad(self, checker: WhitespaceChecker, content: str) -> None:
         checker.check_text('{}\n'.format(content))
         assert [
             {
@@ -181,7 +181,7 @@ class TestLines:
         '    berry',
         '      berry',
     ])
-    def test_even_indentation_is_good(self, checker, content):
+    def test_even_indentation_is_good(self, checker: WhitespaceChecker, content: str) -> None:
         checker.check_text('{}\n'.format(content))
         assert [] == checker.issues
 
@@ -191,7 +191,7 @@ class TestLines:
         ('     berry',      6),  # noqa: E241
         ('       berry',    8),  # noqa: E241
     ])
-    def test_odd_indentation_is_bad(self, checker, content, col):
+    def test_odd_indentation_is_bad(self, checker: WhitespaceChecker, content: str, col: int) -> None:
         checker.check_text('{}\n'.format(content))
         assert [
             {
@@ -206,7 +206,7 @@ class TestLines:
         (' \t peach',       2),  # noqa: E241
         (' \t\t peach',     2),  # noqa: E241
     ])
-    def test_non_spaces_in_indentation_is_bad(self, checker, content, col):
+    def test_non_spaces_in_indentation_is_bad(self, checker: WhitespaceChecker, content: str, col: int) -> None:
         checker.check_text('{}\n'.format(content))
         assert [
             {
@@ -217,7 +217,7 @@ class TestLines:
 
 
 class TestComplexCases:
-    def test_multiple_issues(self, checker):
+    def test_multiple_issues(self, checker: WhitespaceChecker) -> None:
         checker.check_text('\n\n \tpineapple \rbanana')
         assert [
             {

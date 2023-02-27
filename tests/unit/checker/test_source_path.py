@@ -13,7 +13,7 @@ class AlwaysFailChecker(WhitespaceChecker):
 
 
 class TestSourcePath:
-    def test_without_specified_source(self):
+    def test_without_specified_source(self) -> None:
         fail_checker = AlwaysFailChecker()
         fail_checker.check_text('')
 
@@ -25,7 +25,7 @@ class TestSourcePath:
         ('/empty/file', ''),
         ('/contains/anything', ' foo\t\r\nbar '),
     ])
-    def test_with_source(self, source_path):
+    def test_with_source(self, source_path: str) -> None:
         fail_checker = AlwaysFailChecker()
         fail_checker.check_text('', source_path)
 

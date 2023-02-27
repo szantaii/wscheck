@@ -5,6 +5,8 @@ The `check_text()` will be called for fast results and simple test cases
 """
 
 import pytest
+from typing import Callable, List, Optional
+
 from tests import parametrize_with_names
 from wscheck.checker import WhitespaceChecker
 
@@ -19,7 +21,7 @@ DEFAULT_LINE = 'lorem \tipsum' * 5  # 60 chars
 DEFAULT_EOL = '\n'
 
 
-def _line(prefix='', suffix='', eol=DEFAULT_EOL):
+def _line(prefix: str = '', suffix: str = '', eol: str = DEFAULT_EOL) -> str:
     return '{prefix}{line}{suffix}{eol}'.format(
         prefix=prefix,
         line=DEFAULT_LINE,
@@ -28,7 +30,7 @@ def _line(prefix='', suffix='', eol=DEFAULT_EOL):
     )
 
 
-def _text(standard_line=None, head='', center='', foot=''):
+def _text(standard_line: Optional[str] = None, head: str = '', center: str = '', foot: str = '') -> str:
     if standard_line is None:
         standard_line = _line()
 
@@ -44,7 +46,7 @@ def _text(standard_line=None, head='', center='', foot=''):
     )
 
 
-def _measure(benchmark, text, expected_rules, expected_issue_count):
+def _measure(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     def measured_call():
         checker = WhitespaceChecker()
 
@@ -60,7 +62,7 @@ def _measure(benchmark, text, expected_rules, expected_issue_count):
 @parametrize_with_names('text,expected_rules,expected_issue_count', {
     '':  [_text(_line()),    [], 0],     # noqa: E241,E501
 })
-def test_valid(benchmark, text, expected_rules, expected_issue_count):
+def test_valid(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     _measure(benchmark, text, expected_rules, expected_issue_count)
 
 
@@ -74,7 +76,7 @@ def test_valid(benchmark, text, expected_rules, expected_issue_count):
     'all_cr':       [_text(_line(eol='\r')),            ['WSC001'], CHECK_COUNT * LINES_PER_TEXT],  # noqa: E241,E501
     'all_cr+lf':    [_text(_line(eol='\r\n')),          ['WSC001'], CHECK_COUNT * LINES_PER_TEXT],  # noqa: E241,E501
 })
-def test_wsc001(benchmark, text, expected_rules, expected_issue_count):
+def test_wsc001(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
     Bad line ending
     """
@@ -97,7 +99,7 @@ def test_wsc001(benchmark, text, expected_rules, expected_issue_count):
     'foot_space-21x1':      [_text(foot=_line(suffix=' ') * 21),    ['WSC002'], CHECK_COUNT * 21],              # noqa: E241,E501
     'all_space-1x1':        [_text(_line(suffix=' ')),              ['WSC002'], CHECK_COUNT * LINES_PER_TEXT],  # noqa: E241,E501
 })
-def test_wsc002(benchmark, text, expected_rules, expected_issue_count):
+def test_wsc002(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
     Tailing whitespace
     """
@@ -116,7 +118,7 @@ def test_wsc002(benchmark, text, expected_rules, expected_issue_count):
     'foot_space-21x1':      [_text(foot=_line(prefix=' ') * 21),    ['WSC003'], CHECK_COUNT * 21],              # noqa: E241,E501
     'all_space-1x1':        [_text(_line(prefix=' ')),              ['WSC003'], CHECK_COUNT * LINES_PER_TEXT],  # noqa: E241,E501
 })
-def test_wsc003(benchmark, text, expected_rules, expected_issue_count):
+def test_wsc003(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
     Indentation is not multiple of 2
     """
@@ -135,7 +137,7 @@ def test_wsc003(benchmark, text, expected_rules, expected_issue_count):
     'foot_tab-21x1':      [_text(foot=_line(prefix='\t') * 21),    ['WSC004'], CHECK_COUNT * 21],               # noqa: E241,E501
     'all_tab-1x1':        [_text(_line(prefix='\t')),              ['WSC004'], CHECK_COUNT * LINES_PER_TEXT],   # noqa: E241,E501
 })
-def test_wsc004(benchmark, text, expected_rules, expected_issue_count):
+def test_wsc004(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
     Indentation with non-space character
     """
@@ -145,7 +147,7 @@ def test_wsc004(benchmark, text, expected_rules, expected_issue_count):
 @parametrize_with_names('text,expected_rules,expected_issue_count', {
     '':    [_text(foot=_line(eol='')), ['WSC005'], CHECK_COUNT],  # noqa: E241,E501
 })
-def test_wsc005(benchmark, text, expected_rules, expected_issue_count):
+def test_wsc005(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
     No newline at end of file
     """
@@ -156,7 +158,7 @@ def test_wsc005(benchmark, text, expected_rules, expected_issue_count):
     '1-lf':     [_text(foot=DEFAULT_EOL),      ['WSC006'], CHECK_COUNT],  # noqa: E241,E501
     '15-lf':    [_text(foot=DEFAULT_EOL * 15), ['WSC006'], CHECK_COUNT],  # noqa: E241,E501
 })
-def test_wsc006(benchmark, text, expected_rules, expected_issue_count):
+def test_wsc006(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
     Too many newline at end of file
     """
@@ -167,7 +169,7 @@ def test_wsc006(benchmark, text, expected_rules, expected_issue_count):
     '1-lf':     [_text(head=DEFAULT_EOL),      ['WSC007'], CHECK_COUNT],  # noqa: E241,E501
     '15-lf':    [_text(head=DEFAULT_EOL * 15), ['WSC007'], CHECK_COUNT],  # noqa: E241,E501
 })
-def test_wsc007(benchmark, text, expected_rules, expected_issue_count):
+def test_wsc007(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
     File begins with newline
     """

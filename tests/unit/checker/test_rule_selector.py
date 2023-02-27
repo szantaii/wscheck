@@ -4,12 +4,12 @@ from wscheck.checker import WhitespaceChecker, RULES
 
 
 class TestExcludingRules:
-    def test_add_one_exclusion_for_one_issue_type(self):
+    def test_add_one_exclusion_for_one_issue_type(self) -> None:
         checker = WhitespaceChecker(excluded_rules=['WSC001'])
         checker.check_text('apple\r')
         assert [] == checker.issues
 
-    def test_add_one_exclusion_for_two_issue_types(self):
+    def test_add_one_exclusion_for_two_issue_types(self) -> None:
         checker = WhitespaceChecker(excluded_rules=['WSC001'])
         checker.check_text('\tapple\r')
         assert [
@@ -19,12 +19,12 @@ class TestExcludingRules:
             },
         ] == checker.issues
 
-    def test_add_two_exclusions_for_one_issue_types(self):
+    def test_add_two_exclusions_for_one_issue_types(self) -> None:
         checker = WhitespaceChecker(excluded_rules=['WSC001', 'WSC004'])
         checker.check_text('apple\r')
         assert [] == checker.issues
 
-    def test_exclude_all_rules_makes_error(self):
+    def test_exclude_all_rules_makes_error(self) -> None:
         with pytest.raises(RuntimeError) as e:
             WhitespaceChecker(excluded_rules=list(RULES))
 

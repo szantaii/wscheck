@@ -1,3 +1,4 @@
+import _pytest._py.path
 import pytest
 from lxml import etree
 from formencode.doctest_xml_compare import xml_compare
@@ -45,7 +46,7 @@ def printer():
     return ErrorPrinter(files=TEST_FILES, issues=TEST_ISSUES)
 
 
-def test_print_to_tty(capfd, printer):
+def test_print_to_tty(capfd: pytest.CaptureFixture, printer: ErrorPrinter):
     expected_stdout = '\n'.join([
         'In /bad_file line 10:',
         'foo',
@@ -67,7 +68,7 @@ def test_print_to_tty(capfd, printer):
     assert expected_stdout == out
 
 
-def test_colored_print_to_tty(capfd, printer):
+def test_colored_print_to_tty(capfd: pytest.CaptureFixture, printer: ErrorPrinter):
     bold = '\033[1m'
     yellow = '\033[33m'
     reset = '\033[0m'
@@ -93,19 +94,12 @@ def test_colored_print_to_tty(capfd, printer):
     assert expected_stdout == out
 
 
-def assert_equal_xml(generated_xml, expected_xml):
-    """
-    :type generated_xml: str
-    :type expected_xml: str
-    """
+def assert_equal_xml(generated_xml: str, expected_xml: str) -> None:
     __tracebackhide__ = True  # noqa
 
     differences = []
 
-    def append_to_messages(message):
-        """
-        :type message: str
-        """
+    def append_to_messages(message: str) -> None:
         differences.append(' * {}'.format(message))
 
     generated_root_element = etree.fromstring(generated_xml.encode('utf-8'))
@@ -116,7 +110,7 @@ def assert_equal_xml(generated_xml, expected_xml):
         raise AssertionError('\n{}'.format('\n'.join(differences)))
 
 
-def test_write_checkstyle(tmpdir, printer):
+def test_write_checkstyle(tmpdir: _pytest._py.path.LocalPath, printer: ErrorPrinter):
     temp_file = tmpdir.join('test.xml')
     expected_xml = """<?xml version=\'1.0\' encoding=\'UTF-8\'?>
 <checkstyle version="4.3">
