@@ -12,7 +12,7 @@ class AlwaysFailChecker(WhitespaceChecker):
         self._add_issue(rule='WSC000', path=source_path, line=1, col=1, context='')
 
 
-class TestSourcePath(object):
+class TestSourcePath:
     def test_without_specified_source(self):
         fail_checker = AlwaysFailChecker()
         fail_checker.check_text('')
