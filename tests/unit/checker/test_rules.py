@@ -8,7 +8,7 @@ def checker():
     return WhitespaceChecker()
 
 
-class TestEof(object):
+class TestEof:
     """
     WSC005: No newline at end of file
     WSC006: Too many newline at end of file
@@ -77,7 +77,7 @@ class TestEof(object):
         ] == checker.issues
 
 
-class TestBof(object):
+class TestBof:
     """
     WSC007: File begins with newline
     """
@@ -110,7 +110,7 @@ class TestBof(object):
         ] == checker.issues
 
 
-class TestLines(object):
+class TestLines:
     """
     WSC001: Bad line ending
     WSC002: Tailing whitespace
@@ -216,7 +216,7 @@ class TestLines(object):
         ] == checker.issues
 
 
-class TestComplexCases(object):
+class TestComplexCases:
     def test_multiple_issues(self, checker):
         checker.check_text('\n\n \tpineapple \rbanana')
         assert [
