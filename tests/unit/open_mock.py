@@ -1,5 +1,5 @@
 import os
-import mock
+from unittest import mock
 
 __OPEN_REF = None
 
@@ -38,11 +38,7 @@ def __get_open_ref():
     if __OPEN_REF:
         return __OPEN_REF
 
-    try:
-        from builtins import open  # noqa: F401
-        __OPEN_REF = 'builtins.open'
-    except ImportError:
-        from __builtin__ import open  # noqa: F401
-        __OPEN_REF = '__builtin__.open'
+    from builtins import open  # noqa: F401
+    __OPEN_REF = 'builtins.open'
 
     return __OPEN_REF
