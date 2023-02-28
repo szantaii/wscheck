@@ -61,7 +61,7 @@ Example
 
     In examples/multiple_problems.py line 6:
             self.print_to_pdf()
-                               ^-- WSC002: Tailing whitespace
+                               ^-- WSC002: Trailing whitespace
 
     In examples/multiple_problems.py line 9:
        def __generate_pdf(self):
