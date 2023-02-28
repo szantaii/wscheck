@@ -4,6 +4,26 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [Unreleased][unreleased]
+### Added
+- Full Python 3 support
+- Type hinting and type checking (via mypy)
+
+### Removed
+- Python 2 support
+
+### Fixed
+- Fixed typo in documentation
+- Fixed typo (`tailing` → `trailing`) in the project
+
+### Changed
+- Updated development dependencies
+- Updated test environments
+
+### TODO
+- Follow-up the [removal of the pytest.config global object in pytest](https://docs.pytest.org/en/6.2.x/deprecations.html#pytest-config-global) in [tests/performance/test_checker_performance.py](https://github.com/szantaii/wscheck/blob/port-to-python3/tests/performance/test_checker_performance.py#L16).
+- Integrate mypy into tox test runs.
+- Fix mypy findings
+- Complete testing on with Python 3.7, 3.8, 3.9, 3.10 & 3.11.
 
 ## [1.3.2] - 2021-02-08
 ### Fixed
