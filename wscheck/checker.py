@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, Tuple, Union
 
 RULES = {
     'WSC001': 'Bad line ending',
-    'WSC002': 'Tailing whitespace',
+    'WSC002': 'Trailing whitespace',
     'WSC003': 'Indentation is not multiple of 2',
     'WSC004': 'Indentation with non-space character',
     'WSC005': 'No newline at end of file',
@@ -14,7 +14,7 @@ RULES = {
 
 class WhitespaceChecker:
     _LINE_TEMPLATE = re.compile(r'([^\n\r]*)(\r\n|\r|\n|)', re.MULTILINE)
-    _TAILING_WHITESPACE_TEMPLATE = re.compile(r'\s+$')
+    _TRAILING_WHITESPACE_TEMPLATE = re.compile(r'\s+$')
     _LINE_INDENT_TEMPLATE = re.compile(r'^\s+')
     _NOT_SPACES_TEMPLATE = re.compile(r'[^ ]')
 
@@ -74,10 +74,10 @@ class WhitespaceChecker:
                                     context=line_text, message_suffix='{!r}'.format(str(line_eol)))
 
             if 'WSC002' in self._rules:
-                tailing_whitespace_match = self._TAILING_WHITESPACE_TEMPLATE.search(line_text)
-                if tailing_whitespace_match is not None:
+                trailing_whitespace_match = self._TRAILING_WHITESPACE_TEMPLATE.search(line_text)
+                if trailing_whitespace_match is not None:
                     self._add_issue(rule='WSC002', path=source_path, line=line,
-                                    col=tailing_whitespace_match.start() + 1, context=line_text)
+                                    col=trailing_whitespace_match.start() + 1, context=line_text)
 
             if line_text.strip() == '':
                 continue
