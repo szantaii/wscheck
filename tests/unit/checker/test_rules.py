@@ -113,7 +113,7 @@ class TestBof:
 class TestLines:
     """
     WSC001: Bad line ending
-    WSC002: Tailing whitespace
+    WSC002: Trailing whitespace
     WSC003: Indentation is not multiple of 2
     WSC004: Indentation with non-space character
     """

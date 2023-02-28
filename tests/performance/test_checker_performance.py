@@ -101,7 +101,7 @@ def test_wsc001(benchmark: Callable, text: str, expected_rules: List[str], expec
 })
 def test_wsc002(benchmark: Callable, text: str, expected_rules: List[str], expected_issue_count: int) -> None:
     """
-    Tailing whitespace
+    Trailing whitespace
     """
     _measure(benchmark, text, expected_rules, expected_issue_count)
 

@@ -58,7 +58,7 @@ def test_print_to_tty(capfd: pytest.CaptureFixture, printer: ErrorPrinter):
         '',
         'In /bad_file line 188:',
         'echo \'foo--->bar\'  ',
-        '                   ^-- WSC002: Tailing whitespace',
+        '                   ^-- WSC002: Trailing whitespace',
         ''
     ])
 
@@ -84,7 +84,7 @@ def test_colored_print_to_tty(capfd: pytest.CaptureFixture, printer: ErrorPrinte
         '',
         bold + 'In /bad_file line 188:' + reset,
         'echo \'foo--->bar\'  ',
-        '                   ' + yellow + '^-- WSC002: Tailing whitespace' + reset,
+        '                   ' + yellow + '^-- WSC002: Trailing whitespace' + reset,
         ''
     ])
 
@@ -117,7 +117,7 @@ def test_write_checkstyle(tmpdir: _pytest._py.path.LocalPath, printer: ErrorPrin
   <file name="/bad_file">
     <error column="4" source="WhitespaceCheck.WSC001" message="Bad line ending \'\\r\\n\'" line="10" severity="warning"/>
     <error column="7" source="WhitespaceCheck.WSC005" message="No newline at end of file" line="187" severity="warning"/>
-    <error column="17" source="WhitespaceCheck.WSC002" message="Tailing whitespace" line="188" severity="warning"/>
+    <error column="17" source="WhitespaceCheck.WSC002" message="Trailing whitespace" line="188" severity="warning"/>
   </file>
   <file name="/good_file"/>
 </checkstyle>
