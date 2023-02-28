@@ -1,9 +1,14 @@
 docutils>=0.19,<1.0
 flake8>=6.0.0,<6.1
 FormEncode>=2.0.1,<2.1
-pytest>=7.2.1,<7.3
+mypy~=1.1.1
+pytest~=7.2.2
 pytest-benchmark[histogram]>=4.0.0,<4.1
 pytest-cov>=4.0.0,<4.1
 pytest-flake8>=1.1.1,<1.2
 pytest-mock>=3.10.0,<3.11
 Sphinx>=5.3.0,<5.4
+types-docutils~=0.19.1.6
+types-lxml~=2023.2.11
+types-setuptools~=67.6.0.5
+types-termcolor~=1.1.6.1
